@@ -1,0 +1,4 @@
+emmy-ml==0.3.11
+numpy==2.5.4
+frozendict==2.4.7
+PyYAML==6.0.3

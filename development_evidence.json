@@ -1,0 +1,373 @@
+{
+  "schema": "aurora-ptx-development-evidence/v1",
+  "date": "2026-10-22",
+  "compiler_sha256": "dfac9e389ba7775e3f1adb1fb4858e2434e43c1b6b28bfaa1b5df46a961d7ee3",
+  "upstream_commit": "ec8cde1943f88efea3827a95bda6085553d2d407",
+  "runner_gpu": "NVIDIA GeForce RTX 5090 (sm_120)",
+  "official_open": {
+    "passed": 15,
+    "total": 15
+  },
+  "local_metamorphic": {
+    "passed": 21,
+    "total": 21,
+    "not_official_hidden": true,
+    "transformations": [
+      "kernel/buffer/SSA/axis renaming with reversed ABI for all15",
+      "six new static pointwise shapes"
+    ]
+  },
+  "initial_full_attempt": {
+    "passed": 0,
+    "total": 15,
+    "stage": "ptxas",
+    "issues": [
+      "bitwise instruction type suffix",
+      "extern shared-memory declaration scope"
+    ],
+    "failure_preserved_locally": true
+  },
+  "final_source_same_for_open_and_metamorphic": true,
+  "post_requests": 89,
+  "health_requests": 1,
+  "unknown_requests": 0,
+  "performance_benchmark_claim": false,
+  "hidden_grade": null,
+  "rank": null,
+  "award": null,
+  "final_entry_submitted": false,
+  "emmy_used_for": "Graph.from_dict deserialization only in production",
+  "limitations": [
+    "Open set and local metamorphic tests are not organizer hidden evaluation",
+    "Tested numerical workload is f32",
+    "Non-NONE shared swizzles, auxiliary producer bands and serial launches are explicitly unsupported",
+    "Full Emmy application and arbitrary dtypes are not validated",
+    "Participant-narrated video and actual project entry are pending"
+  ],
+  "results": [
+    {
+      "label": "r00_full15_v01",
+      "problem": "p00_scalar_add",
+      "pass": true,
+      "max_compile_seconds": 0.2625587919901591,
+      "max_abs_errors": {
+        "add": 0
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "p01_vector_add",
+      "pass": true,
+      "max_compile_seconds": 0.2872180000122171,
+      "max_abs_errors": {
+        "add": 0
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "p02_scale_shift",
+      "pass": true,
+      "max_compile_seconds": 0.3002926670014858,
+      "max_abs_errors": {
+        "add": 0
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "p03_relu_mul",
+      "pass": true,
+      "max_compile_seconds": 0.29577933400287293,
+      "max_abs_errors": {
+        "mul": 0
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "r01_array_sum",
+      "pass": true,
+      "max_compile_seconds": 0.30410412498167716,
+      "max_abs_errors": {
+        "sum_1": 0.000003814697265625
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "r02_big_sum",
+      "pass": true,
+      "max_compile_seconds": 0.3011217500024941,
+      "max_abs_errors": {
+        "sum_1": 0.0000152587890625
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "r03_mean",
+      "pass": true,
+      "max_compile_seconds": 0.28539729097974487,
+      "max_abs_errors": {
+        "mean": 9.313225746154785e-10
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "r04_row_sum",
+      "pass": true,
+      "max_compile_seconds": 0.2824505000025965,
+      "max_abs_errors": {
+        "sum_1": 0.0000057220458984375
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "m01_matmul_512",
+      "pass": true,
+      "max_compile_seconds": 0.29998433400760405,
+      "max_abs_errors": {
+        "matmul": 0.000087738037109375
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "m02_matmul_rect",
+      "pass": true,
+      "max_compile_seconds": 0.26638470799662173,
+      "max_abs_errors": {
+        "matmul": 0.0000152587890625
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "f01_rmsnorm",
+      "pass": true,
+      "max_compile_seconds": 0.2959569589875173,
+      "max_abs_errors": {
+        "mul_1": 0.0000019073486328125
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "f02_row_softmax",
+      "pass": true,
+      "max_compile_seconds": 0.26608537501306273,
+      "max_abs_errors": {
+        "softmax": 7.450580596923828e-9
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "f03_l2norm",
+      "pass": true,
+      "max_compile_seconds": 0.28789574999245815,
+      "max_abs_errors": {
+        "div": 1.4901161193847656e-8
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "a01_attention",
+      "pass": true,
+      "max_compile_seconds": 0.2896820409805514,
+      "max_abs_errors": {
+        "matmul_1": 6.556510925292969e-7
+      }
+    },
+    {
+      "label": "r00_full15_v01",
+      "problem": "a02_attention_128",
+      "pass": true,
+      "max_compile_seconds": 0.28222054199432023,
+      "max_abs_errors": {
+        "matmul_1": 4.76837158203125e-7
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_a01_attention",
+      "pass": true,
+      "max_compile_seconds": 0.2657114159956109,
+      "max_abs_errors": {
+        "bb_matmul_1": 6.556510925292969e-7
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_a02_attention_128",
+      "pass": true,
+      "max_compile_seconds": 0.3017423340061214,
+      "max_abs_errors": {
+        "bb_matmul_1": 4.76837158203125e-7
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_f01_rmsnorm",
+      "pass": true,
+      "max_compile_seconds": 0.2958337500167545,
+      "max_abs_errors": {
+        "bb_mul_1": 0.0000019073486328125
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_f02_row_softmax",
+      "pass": true,
+      "max_compile_seconds": 0.2659698330098763,
+      "max_abs_errors": {
+        "bb_softmax": 7.450580596923828e-9
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_f03_l2norm",
+      "pass": true,
+      "max_compile_seconds": 0.28610537500935607,
+      "max_abs_errors": {
+        "bb_div": 1.4901161193847656e-8
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_m01_matmul_512",
+      "pass": true,
+      "max_compile_seconds": 0.27673037501517683,
+      "max_abs_errors": {
+        "bb_matmul": 0.000087738037109375
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_m02_matmul_rect",
+      "pass": true,
+      "max_compile_seconds": 0.26465624998672865,
+      "max_abs_errors": {
+        "bb_matmul": 0.000011444091796875
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_p00_scalar_add",
+      "pass": true,
+      "max_compile_seconds": 0.3027388750051614,
+      "max_abs_errors": {
+        "bb_add": 0
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_p01_vector_add",
+      "pass": true,
+      "max_compile_seconds": 0.3001390419958625,
+      "max_abs_errors": {
+        "bb_add": 0
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_p02_scale_shift",
+      "pass": true,
+      "max_compile_seconds": 0.30397062498377636,
+      "max_abs_errors": {
+        "bb_add": 0
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_p03_relu_mul",
+      "pass": true,
+      "max_compile_seconds": 0.2995795410242863,
+      "max_abs_errors": {
+        "bb_mul": 0
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_r01_array_sum",
+      "pass": true,
+      "max_compile_seconds": 0.3029732499853708,
+      "max_abs_errors": {
+        "bb_sum_1": 0.000003814697265625
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_r02_big_sum",
+      "pass": true,
+      "max_compile_seconds": 0.2733889170049224,
+      "max_abs_errors": {
+        "bb_sum_1": 0.0000152587890625
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_r03_mean",
+      "pass": true,
+      "max_compile_seconds": 0.26530333401751705,
+      "max_abs_errors": {
+        "bb_mean": 9.313225746154785e-10
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "alpha_r04_row_sum",
+      "pass": true,
+      "max_compile_seconds": 0.30577200002153404,
+      "max_abs_errors": {
+        "bb_sum_1": 0.0000057220458984375
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "shape_pointwise_cells_1",
+      "pass": true,
+      "max_compile_seconds": 0.3055952909926418,
+      "max_abs_errors": {
+        "add": 0
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "shape_pointwise_cells_17",
+      "pass": true,
+      "max_compile_seconds": 0.3034069580025971,
+      "max_abs_errors": {
+        "add": 0
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "shape_pointwise_cells_63",
+      "pass": true,
+      "max_compile_seconds": 0.30624362497474067,
+      "max_abs_errors": {
+        "add": 0
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "shape_pointwise_cells_129",
+      "pass": true,
+      "max_compile_seconds": 0.30121545802103356,
+      "max_abs_errors": {
+        "add": 0
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "shape_pointwise_cells_257",
+      "pass": true,
+      "max_compile_seconds": 0.3023363340180367,
+      "max_abs_errors": {
+        "add": 0
+      }
+    },
+    {
+      "label": "r00_metamorphic21_v01",
+      "problem": "shape_pointwise_cells_500",
+      "pass": true,
+      "max_compile_seconds": 0.30670029198518023,
+      "max_abs_errors": {
+        "add": 0
+      }
+    }
+  ]
+}
