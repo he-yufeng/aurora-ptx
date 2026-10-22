@@ -8,6 +8,8 @@ On 2026-10-22, the same compiler source passed all **15/15 official open problem
 
 These are development correctness results, **not a hidden-set score, ranking, prize, or completed contest submission**. See [development_evidence.json](development_evidence.json) for source binding, per-case errors, and the initial failed full attempt. No kernel-speed superiority is claimed.
 
+A separate frozen-source R01 campaign passed **20/20 additional local shape cases** on the same runner: reductions with tail lanes, fused row widths, different asynchronous-matmul K lengths, split-K geometries, grouped-raster tail groups, and attention sequence/head/output sizes. A read-only audit compared saved GPU outputs with the published independent NumPy reference functions. These are not organizer-hidden problems; see [development_evidence_r01.json](development_evidence_r01.json).
+
 ## Run
 
 Python 3.12+ is required; the recorded environment used Python 3.13.11.
@@ -29,6 +31,15 @@ The minimal dependency set intentionally supports IR deserialization, not every 
 
 `compile.py` accepts exactly one IR path and prints PTX to stdout. `meta.json` in the IR's directory supplies the kernel's `arg_order` and dynamic shared-memory limit. Neither reference CUDA files nor expected-output files are read by the compiler.
 
+To reproduce the extra shape fixtures locally, with the official task checkout beside this repository as above:
+
+```sh
+.venv/bin/python tools/make_shape_cases.py
+.venv/bin/python compile.py tools/shape_cases/row_sum_3_33/r01_row_sum_3_33.ir.json > out.ptx
+```
+
+The generator does not make network requests or change the upstream problem set. It refuses to overwrite an existing fixture directory. Its NumPy oracles and finite shape design are test infrastructure, never part of the submitted compiler. The official checker also accepts a generated problem-folder path if a further native check is actually needed.
+
 ## Design
 
 1. Deserialize with the required `Graph.from_dict` API and bind the ABI from launch metadata.
@@ -41,7 +52,7 @@ See [WALKTHROUGH.md](WALKTHROUGH.md) for the invariants and failure analysis.
 
 ## Boundaries
 
-The verified campaign is f32/static-shape. The implementation rejects unsupported IR rather than falling back to an existing compiler. Non-NONE shared-memory swizzles, auxiliary producer bands, serial launch parameters, tensor-core/TMA primitives, and arbitrary dtype/operator combinations are not claimed. Local shape checks currently cover pointwise geometry; the other categories have open-set plus naming/ABI checks, not an exhaustive shape sweep.
+The verified campaigns are f32/static-shape. The implementation rejects unsupported IR rather than falling back to an existing compiler. Non-NONE shared-memory swizzles, auxiliary producer bands, serial launch parameters, tensor-core/TMA primitives, and arbitrary dtype/operator combinations are not claimed. The extra pointwise and cross-category shape checks are finite coverage, not an exhaustive shape sweep or proof of hidden-set generalization.
 
 This project was developed with AI coding assistance, which the published event rules permit. The participant must independently understand the compiler and personally narrate the required video before submitting; this repository is not a claim that those steps have happened.
 
