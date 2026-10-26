@@ -1,0 +1,107 @@
+{
+  "schema": "aurora-ptx-wide-shuffle-development-evidence/v1",
+  "date": "2026-10-26",
+  "compiler_sha256": "a67f6b89dceb0e31873264880139cc3156c52769d64d5d54fa3b6834b43ec1a9",
+  "baseline_compiler_sha256": "dfac9e389ba7775e3f1adb1fb4858e2434e43c1b6b28bfaa1b5df46a961d7ee3",
+  "scope": "Five fixed local typed 64-bit row-sum variants, not official hidden tests",
+  "baseline_findings": {
+    "f64": "Known native ptxas argument mismatch at all five b32 shuffles on f64 registers",
+    "i64": "Known local UnsupportedIR for canonical Smem int64_t spelling"
+  },
+  "repair": "Bit-unpack f64/s64 into two u32 words, shuffle both with identical existing offset and mask, bit-pack without numeric conversion; add int64_t alias",
+  "native": {
+    "passed": 5,
+    "total": 5,
+    "post_requests": 10,
+    "known_responses": 10,
+    "unknown_responses": 0,
+    "runner": "Organizer public RTX5090 development runner, arch sm_120",
+    "timing_benchmark_claim": false,
+    "cases": [
+      {
+        "id": "f64_64_512",
+        "kind": "f64",
+        "pass": true,
+        "max_abs_error": 1.0658141036401503e-14,
+        "rtol": 1e-10,
+        "atol": 1e-10,
+        "i64_json_float_exact_range_guard": false
+      },
+      {
+        "id": "f64_7_257",
+        "kind": "f64",
+        "pass": true,
+        "max_abs_error": 3.552713678800501e-15,
+        "rtol": 1e-10,
+        "atol": 1e-10,
+        "i64_json_float_exact_range_guard": false
+      },
+      {
+        "id": "f64_3_33",
+        "kind": "f64",
+        "pass": true,
+        "max_abs_error": 1.7763568394002505e-15,
+        "rtol": 1e-10,
+        "atol": 1e-10,
+        "i64_json_float_exact_range_guard": false
+      },
+      {
+        "id": "i64_5_257",
+        "kind": "i64",
+        "pass": true,
+        "max_abs_error": 0,
+        "rtol": 0,
+        "atol": 0,
+        "i64_json_float_exact_range_guard": true
+      },
+      {
+        "id": "i64_3_33",
+        "kind": "i64",
+        "pass": true,
+        "max_abs_error": 0,
+        "rtol": 0,
+        "atol": 0,
+        "i64_json_float_exact_range_guard": true
+      }
+    ]
+  },
+  "separate_counterexample_probe": {
+    "health_get": 1,
+    "baseline_compile_post": 1,
+    "known_ptxas_failure": true,
+    "run_requests": 0
+  },
+  "local_checks": {
+    "focused_unit_tests": 5,
+    "public_unit_tests_including_original": 8,
+    "public_generator_exact_input_oracle_and_ptx_bindings": 5,
+    "historical_ptx_byte_identical": {
+      "official_open": 15,
+      "metamorphic": 21,
+      "shape_r01": 20
+    },
+    "historical_native_results_date": "2026-10-22",
+    "historical_native_reruns": 0
+  },
+  "preserved_failures": {
+    "fixture_serialization_TypeError": "Preserved locally, fixed before native execution",
+    "canonical_integer_baseline_UnsupportedIR": "Preserved, not replaced by an invalid IR alias",
+    "observation_client_assertion": "Original controller exited1 after eight known replies because runner serializes i64 as JSON floating-point numbers; original terminal retained. Four outputs independently re-audited, then only unattempted fifth case executed once",
+    "integer_exactness": "Integer-valued JSON numbers accepted only when finite, integral and strictly inside 2^53, with exact Python integer oracle equality; no tolerance relaxation",
+    "R02_compile_request23": "Still unknown, closed, never replayed or promoted"
+  },
+  "native_finished_at_utc": "2026-10-26T09:28:42.680029+00:00",
+  "original_deadline_utc": "2026-10-26T09:55:00+00:00",
+  "independent_saved_audit_and_continuation_sha256": "28469d3cc683be2b069474c8110ad80026e3692a81e280d2de35409e678b184b",
+  "historical_identity_manifest_sha256": "5342bfe8f32912687b00620e2811711acd422b86345db4e4423833ca7fdb545c",
+  "limits": [
+    "Finite f64/i64 reduction coverage, not arbitrary dtype/operator support",
+    "No native result beyond the declared lossless JSON integer range",
+    "No new full f32 GPU campaign; exact PTX identities bind reused historical results",
+    "Hidden dtype distribution and hidden-grade impact unknown",
+    "No kernel-speed superiority, official score, rank or award claimed"
+  ],
+  "hidden_score": null,
+  "rank": null,
+  "award": null
+}

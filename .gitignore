@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 out.ptx
 tools/shape_cases/
+tools/wide_cases/

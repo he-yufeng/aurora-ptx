@@ -34,7 +34,7 @@ def static(dim):
 def typ(dtype):
     name = getattr(dtype, "name", dtype)
     table = {"f32": "f32", "float": "f32", "f64": "f64", "double": "f64",
-             "int": "s32", "i32": "s32", "int32_t": "s32", "i64": "s64",
+             "int": "s32", "i32": "s32", "int32_t": "s32", "i64": "s64", "int64_t": "s64",
              "f16": "f16", "half": "f16", "u32": "u32", "bool": "pred"}
     if name not in table:
         raise UnsupportedIR(f"unsupported scalar dtype {name!r}")
@@ -398,7 +398,16 @@ class PTX:
                 for a,b in zip(stmt.state,stmt.state_b):
                     src = self.reg(self.expr(a))
                     dst = self.fresh(src.kind)
-                    self.emit(f"shfl.sync.bfly.b32 {dst.operand}, {src.operand}, {offset}, 31, 0xffffffff;")
+                    if src.kind in ("f64", "s64"):
+                        # shfl moves 32 bits; preserve both words without conversion.
+                        lo, hi = self.fresh("u32"), self.fresh("u32")
+                        shuffled_lo, shuffled_hi = self.fresh("u32"), self.fresh("u32")
+                        self.emit(f"mov.b64 {{{lo.operand}, {hi.operand}}}, {src.operand};")
+                        self.emit(f"shfl.sync.bfly.b32 {shuffled_lo.operand}, {lo.operand}, {offset}, 31, 0xffffffff;")
+                        self.emit(f"shfl.sync.bfly.b32 {shuffled_hi.operand}, {hi.operand}, {offset}, 31, 0xffffffff;")
+                        self.emit(f"mov.b64 {dst.operand}, {{{shuffled_lo.operand}, {shuffled_hi.operand}}};")
+                    else:
+                        self.emit(f"shfl.sync.bfly.b32 {dst.operand}, {src.operand}, {offset}, 31, 0xffffffff;")
                     self.bind(b,dst)
                 self.body(stmt.combine_states)
                 offset //= 2

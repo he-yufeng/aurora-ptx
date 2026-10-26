@@ -6,9 +6,11 @@ An independent Python compiler from Emmy's typed Kernel IR to NVIDIA PTX, develo
 
 On 2026-10-22, the same compiler source passed all **15/15 official open problems** on the organizer's RTX 5090 runner, covering pointwise, reductions, matmul, fused normalization/softmax, and attention-like kernels. It additionally passed **21/21 local metamorphic cases**: all15 with renamed kernel/buffer/SSA/axis identities and a reversed argument ABI, plus six different static pointwise sizes.
 
-These are development correctness results, **not a hidden-set score, ranking, prize, or completed contest submission**. See [development_evidence.json](development_evidence.json) for source binding, per-case errors, and the initial failed full attempt. No kernel-speed superiority is claimed.
+These are development correctness results, **not a hidden-set score, ranking or prize**. See [development_evidence.json](development_evidence.json) for source binding, per-case errors, and the initial failed full attempt. That dated evidence predates the separate October24 project/video submission. No kernel-speed superiority is claimed.
 
 A separate frozen-source R01 campaign passed **20/20 additional local shape cases** on the same runner: reductions with tail lanes, fused row widths, different asynchronous-matmul K lengths, split-K geometries, grouped-raster tail groups, and attention sequence/head/output sizes. A read-only audit compared saved GPU outputs with the published independent NumPy reference functions. These are not organizer-hidden problems; see [development_evidence_r01.json](development_evidence_r01.json).
+
+On October26, R03 fixed a separately reproduced 64-bit shuffle-width defect: the old compiler's f64 reduction was rejected by ptxas. The repair transports the two 32-bit words without numeric conversion and recognizes the canonical `int64_t` shared-memory spelling. **Five fixed local cases passed native execution**: three f64 row reductions (maximum absolute error1.07e-14) and two exact i64 cases. The original56 open/metamorphic/shape PTX files remain byte-identical; their October22 native results were reused, not rerun. See [development_evidence_r03.json](development_evidence_r03.json), including the preserved observation-client failure and lossless-range audit. R02's unrelated unknown compile request remains closed and was not replayed or promoted. Hidden-grade impact is unknown.
 
 ## Run
 
@@ -20,6 +22,7 @@ python3 -m venv .venv
 git clone --depth 1 https://github.com/cloudrift-ai/emmy-hackathon-2026 ../upstream
 .venv/bin/python compile.py ../upstream/problems/r01_array_sum/k_sum_1_reduce.ir.json > out.ptx
 .venv/bin/python test_lowering.py
+.venv/bin/python test_wide_shuffle.py
 ```
 
 The minimal dependency set intentionally supports IR deserialization, not every feature of the Emmy application. No Torch, CUDA toolkit, or local GPU is required to generate PTX. For optional real-GPU checks, install `requests` and use the official [submit.py](https://github.com/cloudrift-ai/emmy-hackathon-2026/blob/main/submit.py) with this compiler. Read the organizer's API limits first; do not flood the shared runner.
@@ -40,6 +43,15 @@ To reproduce the extra shape fixtures locally, with the official task checkout b
 
 The generator does not make network requests or change the upstream problem set. It refuses to overwrite an existing fixture directory. Its NumPy oracles and finite shape design are test infrastructure, never part of the submitted compiler. The official checker also accepts a generated problem-folder path if a further native check is actually needed.
 
+The fixed wide-value cases can likewise be generated offline:
+
+```sh
+.venv/bin/python tools/make_wide_cases.py
+.venv/bin/python compile.py tools/wide_cases/f64_7_257/k_r03_f64_7_257.ir.json > out.ptx
+```
+
+Their oracles are in `expected.json`, using `math.fsum` or exact Python integer sums. The recorded runner serializes i64 values as JSON floating-point numbers; the recorded integer outputs are integral and strictly inside2^53, where the conversion is lossless. Larger i64 JSON results must not be treated as exact without an appropriate output interface.
+
 ## Design
 
 1. Deserialize with the required `Graph.from_dict` API and bind the ABI from launch metadata.
@@ -52,9 +64,9 @@ See [WALKTHROUGH.md](WALKTHROUGH.md) for the invariants and failure analysis.
 
 ## Boundaries
 
-The verified campaigns are f32/static-shape. The implementation rejects unsupported IR rather than falling back to an existing compiler. Non-NONE shared-memory swizzles, auxiliary producer bands, serial launch parameters, tensor-core/TMA primitives, and arbitrary dtype/operator combinations are not claimed. The extra pointwise and cross-category shape checks are finite coverage, not an exhaustive shape sweep or proof of hidden-set generalization.
+The broad verified campaigns are f32/static-shape; R03 adds only the five declared f64/i64 reduction checks, not general dtype/operator support. The implementation rejects unsupported IR rather than falling back to an existing compiler. Non-NONE shared-memory swizzles, auxiliary producer bands, serial launch parameters, tensor-core/TMA primitives, and arbitrary dtype/operator combinations are not claimed. All additional checks are finite coverage, not an exhaustive sweep or proof of hidden-set generalization.
 
-This project was developed with AI coding assistance, which the published event rules permit. The participant must independently understand the compiler and personally narrate the required video before submitting; this repository is not a claim that those steps have happened.
+This project was developed with AI coding assistance, which the published event rules permit. The participant provided a personally narrated video with the October24 project entry; that is not a claim of judging, prize eligibility or an award. AI assistance does not replace the participant's required understanding.
 
 ## Attribution
 
