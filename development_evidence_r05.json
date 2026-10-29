@@ -1,0 +1,98 @@
+{
+  "schema": "aurora-ptx-predicate-select-development-evidence/v1",
+  "date": "2026-10-29",
+  "compiler_sha256": "c4ee6ce22a59373cdd839b42c52a49b6d931db0984a4e2c5942a52a2df0a2a62",
+  "baseline_compiler_sha256": "a67f6b89dceb0e31873264880139cc3156c52769d64d5d54fa3b6834b43ec1a9",
+  "scope": "Four fixed original pointwise predicate-selection cases; not official hidden evaluation",
+  "baseline_finding": "A legal serialized nested TernaryExpr emitted selp.pred and received a known ptxas instruction-type rejection",
+  "repair": "Only pred/pred TernaryExpr branches use not/and/and/or predicate logic. Numeric selp and every other production code path are unchanged.",
+  "native": {
+    "passed": 4,
+    "total": 4,
+    "exact_outputs": 512,
+    "max_abs_error": 0,
+    "atol": 0,
+    "rtol": 0,
+    "post_requests": 8,
+    "known_responses": 8,
+    "unknown_responses": 0,
+    "runner": "Organizer public RTX5090 development runner, sm_120",
+    "timing_benchmark_claim": false,
+    "cases": [
+      {
+        "id": "predicate_truth8_f32",
+        "entry": "k_r05_predicate_truth8_f32",
+        "outputs": 128,
+        "truth_combinations": 8,
+        "ptx_sha256": "d6022992b0a4424be856de83515d5498c34375e903918d4e1b1bbba18b9f03fa",
+        "compile_response_sha256": "01bb5469a8f5da85bc5f011b2fc372664cf57c3ce29b3dafea8c5a7e0c51f139",
+        "run_response_sha256": "5d3523554ce78d0a9cd473f7dfb031f72a556a9f0951668495618cd016551a6a",
+        "max_abs_error": 0,
+        "pass": true
+      },
+      {
+        "id": "predicate_nested16_f32",
+        "entry": "k_r05_predicate_nested16_f32",
+        "outputs": 128,
+        "truth_combinations": 16,
+        "ptx_sha256": "45ea3ca9f60d1deec0981a2f74d8657d7a118f5f25de3211a201d34b540e3845",
+        "compile_response_sha256": "9949bd7047c7e85ba149266c97ad4153750ddfb8f8003214e12cfd7385d4e5fd",
+        "run_response_sha256": "bb852796ea04c74f1f41e8f300ff6064639618a5860de6d58894bad1367cb1c9",
+        "max_abs_error": 0,
+        "pass": true
+      },
+      {
+        "id": "predicate_cond_write_f32",
+        "entry": "k_r05_predicate_cond_write_f32",
+        "outputs": 128,
+        "truth_combinations": 8,
+        "ptx_sha256": "ce866d0074791dda5f0d45cae6a0413c75a98a584f92dda7626d3cc1e41aec5e",
+        "compile_response_sha256": "8037f91c1efea30924120e749ac39c62b1b192093e4ae8c4e0b614f5004246c8",
+        "run_response_sha256": "3ec4bed7b2aa68176abe31ef35c737809ec28d1e4b0402b2860586c49f92876f",
+        "max_abs_error": 0,
+        "pass": true
+      },
+      {
+        "id": "predicate_to_s32_f32",
+        "entry": "k_r05_predicate_to_s32_f32",
+        "outputs": 128,
+        "truth_combinations": 8,
+        "ptx_sha256": "92f1a67b2b164f0d1e7117bbecd24f3048c210ea0de3f4faba3eeaefca6e1dd2",
+        "compile_response_sha256": "4af60bdba1abdc8887cd4f11791011b6ad5bf36637023a1448a3cd778956d7f9",
+        "run_response_sha256": "801418fde0d5dd2f700155be09b6d80fa45a53e8b72bfcc822860eb4e5f7fe94",
+        "max_abs_error": 0,
+        "pass": true
+      }
+    ]
+  },
+  "separate_counterexample_probe": {
+    "health_get": 1,
+    "baseline_compile_post": 1,
+    "known_ptxas_rejection": true,
+    "run_requests": 0
+  },
+  "local_checks": {
+    "new_regression_methods": 12,
+    "new_baseline_failures": 9,
+    "candidate_tests_including_original": 20,
+    "public_tests_including_original": 20,
+    "public_generator_exact_native_input_oracle_and_ptx_bindings": 4,
+    "historical_ptx_byte_identical": 61,
+    "historical_native_evidence_dates": [
+      "2026-10-22",
+      "2026-10-26"
+    ],
+    "historical_native_reruns": 0
+  },
+  "native_finished_at_utc": "2026-10-29T05:12:44.568905+00:00",
+  "original_native_deadline_utc": "2026-10-29T06:00:00Z",
+  "limits": [
+    "Finite predicate-valued expression coverage, not arbitrary dtype/operator support",
+    "The independent current fix does not contain R04's incomplete shift-count candidate",
+    "R02 compile23 and R04 run008 remain unknown, closed, never replayed or promoted",
+    "No new full historical GPU campaign, official hidden score, rank, award or kernel-speed superiority claimed"
+  ],
+  "hidden_score": null,
+  "rank": null,
+  "award": null
+}

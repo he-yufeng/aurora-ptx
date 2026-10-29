@@ -171,6 +171,14 @@ class PTX:
         if name == "TernaryExpr":
             cond = self.predicate(self.expr(expr.cond))
             a, b = self.expr(expr.if_true), self.expr(expr.if_false)
+            if a.kind == b.kind == "pred":
+                # selp has no .pred data type; select predicates with logic.
+                dst, inv, yes, no = (self.fresh("pred") for _ in range(4))
+                self.emit(f"not.pred {inv.operand}, {cond.operand};")
+                self.emit(f"and.pred {yes.operand}, {cond.operand}, {a.operand};")
+                self.emit(f"and.pred {no.operand}, {inv.operand}, {b.operand};")
+                self.emit(f"or.pred {dst.operand}, {yes.operand}, {no.operand};")
+                return dst
             b = self.convert(b, a.kind)
             dst = self.fresh(a.kind)
             self.emit(f"selp.{a.kind} {dst.operand}, {a.operand}, {b.operand}, {cond.operand};")
