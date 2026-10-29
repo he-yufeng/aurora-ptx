@@ -16,6 +16,8 @@ On October29, R05 reproduced a distinct predicate-valued ternary defect: the pri
 
 On October29, R06 fixed the independently reproduced typed-materialization defect: a valid `Let(F32, comparison)` generated an unsupported `cvt.f32.pred`. Numeric/predicate conversion now uses `selp` and `setp`, and a Boolean immediate is materialized as a predicate register. Floating-point truth uses an unordered nonzero comparison: NaN is true and both signed zeros are false. **Four fixed native cases passed all512 exact f32 outputs**, combining both conversion directions across five supported numeric IR types, internal f32/f64 NaN/Inf/zero truth, and Boolean literals/aliases. All32 local tests passed; all65 prior PTX files stayed byte-identical without historical GPU reruns. See [development_evidence_r06.json](development_evidence_r06.json). This is finite development coverage, not a new hidden grade, rank, prize, or general exceptional-value proof.
 
+On October29, R07 reproduced a separate nested-comparison defect: equality of two comparison results emitted invalid `setp.eq.pred`. Non-logical binary operations now promote a predicate left operand to numeric data; Boolean pairs and Boolean shift data become int32, while a numeric peer supplies the other arithmetic type. Predicate logical operations and numeric-left emission are unchanged. **Four fixed native cases passed all512 exact f32 outputs**, covering six pair comparisons, Boolean arithmetic/bitwise operations with safe nonzero divisors, five scalar numeric peer types, and valid predicate-data shift contexts. All44 local tests passed;160 numeric-only emission rows and69 prior PTX files stayed unchanged, without historical GPU reruns. See [development_evidence_r07.json](development_evidence_r07.json). The left-shift native context checks an integer round trip rather than a separate raw shifted-output buffer; no general shift/type-system or hidden-grade claim is made.
+
 ## Run
 
 Python 3.12+ is required; the recorded environment used Python 3.13.11.
@@ -29,6 +31,7 @@ git clone --depth 1 https://github.com/cloudrift-ai/emmy-hackathon-2026 ../upstr
 .venv/bin/python test_wide_shuffle.py
 .venv/bin/python -m unittest test_predicate_select
 .venv/bin/python -m unittest test_materialization
+.venv/bin/python -m unittest test_predicate_binary
 ```
 
 The minimal dependency set intentionally supports IR deserialization, not every feature of the Emmy application. No Torch, CUDA toolkit, or local GPU is required to generate PTX. For optional real-GPU checks, install `requests` and use the official [submit.py](https://github.com/cloudrift-ai/emmy-hackathon-2026/blob/main/submit.py) with this compiler. Read the organizer's API limits first; do not flood the shared runner.
@@ -76,6 +79,15 @@ The four materialization cases are also generated offline:
 
 The generator refuses existing case directories and makes no network/GPU calls. Its inputs and independent Boolean oracles reproduce the fixed native fixtures. The public tests generate temporary fixtures and check36 frozen numeric-only conversions from the previous published compiler; they do not call that compiler as a backend.
 
+The four predicate-operand cases can be generated without network or GPU calls:
+
+```sh
+.venv/bin/python tools/make_predicate_binary_cases.py
+.venv/bin/python compile.py tools/predicate_binary_cases/predicate_numeric_peers/k_r07_predicate_numeric_peers.ir.json > out.ptx
+```
+
+The generator refuses existing output directories. Its exact scalar oracles and temporary-fixture tests are validation infrastructure, not compiler inputs or a translation backend. `test_predicate_binary.py` also preserves160 frozen numeric-only emission rows from the preceding published compiler; emission identity alone does not validate pre-existing numeric-only limitations.
+
 ## Design
 
 1. Deserialize with the required `Graph.from_dict` API and bind the ABI from launch metadata.
@@ -88,7 +100,7 @@ See [WALKTHROUGH.md](WALKTHROUGH.md) for the invariants and failure analysis.
 
 ## Boundaries
 
-The broad verified campaigns are f32/static-shape; R03 adds only the five declared f64/i64 reduction checks, R05 the four predicate-selection contexts, and R06 the four scalar-materialization contexts, not general dtype/operator support. R06 covers f32/f64/s32/s64/u32 scalar IR and locally checks the internal u64 register conversion; it does not add a U64 graph dtype or Boolean memory operations. Its nonfinite truth test is not blanket IEEE exceptional-value correctness for all arithmetic and comparison operators. The implementation rejects unsupported IR rather than falling back to an existing compiler. Non-NONE shared-memory swizzles, auxiliary producer bands, serial launch parameters, tensor-core/TMA primitives, and arbitrary dtype/operator combinations are not claimed. All additional checks are finite coverage, not an exhaustive sweep or proof of hidden-set generalization.
+The broad verified campaigns are f32/static-shape; R03 adds only the five declared f64/i64 reduction checks, R05 the four predicate-selection contexts, R06 the four scalar-materialization contexts, and R07 the four predicate-operand contexts, not general dtype/operator support. R06/R07 cover f32/f64/s32/s64/u32 scalar IR and locally check internal u64 registers; they do not add a U64 graph dtype or Boolean memory operations. R06's nonfinite truth test is not blanket IEEE exceptional-value correctness for all arithmetic and comparison operators. R07 does not repair general mixed-numeric promotions or incorporate the sealed R04 numeric-64-bit-data shift candidate. The implementation rejects unsupported IR rather than falling back to an existing compiler. Non-NONE shared-memory swizzles, auxiliary producer bands, serial launch parameters, tensor-core/TMA primitives, and arbitrary dtype/operator combinations are not claimed. All additional checks are finite coverage, not an exhaustive sweep or proof of hidden-set generalization.
 
 This project was developed with AI coding assistance, which the published event rules permit. The participant provided a personally narrated video with the October24 project entry; that is not a claim of judging, prize eligibility or an award. AI assistance does not replace the participant's required understanding.
 

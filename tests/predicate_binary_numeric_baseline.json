@@ -1,0 +1,1690 @@
+{
+  "source_sha256": "4961d6459327fea3d3a65ce5bcb069f5ee1e8791cd1dacbc9739a42e8a65dea6",
+  "rows": [
+    {
+      "left_kind": "f32",
+      "right_kind": "f32",
+      "op": "+",
+      "operand": "%f8",
+      "kind": "f32",
+      "lines": [
+        "    add.rn.f32 %f8, %f0, %f1;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f32",
+      "op": "-",
+      "operand": "%f8",
+      "kind": "f32",
+      "lines": [
+        "    sub.rn.f32 %f8, %f0, %f1;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f32",
+      "op": "*",
+      "operand": "%f8",
+      "kind": "f32",
+      "lines": [
+        "    mul.rn.f32 %f8, %f0, %f1;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f32",
+      "op": "/",
+      "operand": "%f8",
+      "kind": "f32",
+      "lines": [
+        "    div.rn.f32 %f8, %f0, %f1;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.eq.f32 %p8, %f0, %f1;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f32",
+      "op": "!=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.f32 %p8, %f0, %f1;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f32",
+      "op": "<",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.lt.f32 %p8, %f0, %f1;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f32",
+      "op": "<=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.le.f32 %p8, %f0, %f1;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f32",
+      "op": ">",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.gt.f32 %p8, %f0, %f1;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f32",
+      "op": ">=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ge.f32 %p8, %f0, %f1;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f32",
+      "op": "&&",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.neu.f32 %p9, %f0, 0f00000000;",
+        "    setp.neu.f32 %p10, %f1, 0f00000000;",
+        "    and.pred %p8, %p9, %p10;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f32",
+      "op": "||",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.neu.f32 %p9, %f0, 0f00000000;",
+        "    setp.neu.f32 %p10, %f1, 0f00000000;",
+        "    or.pred %p8, %p9, %p10;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f64",
+      "op": "+",
+      "operand": "%f9",
+      "kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.f64 %f8, %d1;",
+        "    add.rn.f32 %f9, %f0, %f8;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "f64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rn.f32.f64 %f8, %d1;",
+        "    setp.eq.f32 %p8, %f0, %f8;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "s32",
+      "op": "+",
+      "operand": "%f9",
+      "kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.s32 %f8, %r1;",
+        "    add.rn.f32 %f9, %f0, %f8;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "s32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rn.f32.s32 %f8, %r1;",
+        "    setp.eq.f32 %p8, %f0, %f8;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "s64",
+      "op": "+",
+      "operand": "%f9",
+      "kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.s64 %f8, %l1;",
+        "    add.rn.f32 %f9, %f0, %f8;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "s64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rn.f32.s64 %f8, %l1;",
+        "    setp.eq.f32 %p8, %f0, %f8;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "u32",
+      "op": "+",
+      "operand": "%f9",
+      "kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.u32 %f8, %u1;",
+        "    add.rn.f32 %f9, %f0, %f8;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "u32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rn.f32.u32 %f8, %u1;",
+        "    setp.eq.f32 %p8, %f0, %f8;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "u64",
+      "op": "+",
+      "operand": "%f9",
+      "kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.u64 %f8, %rd1;",
+        "    add.rn.f32 %f9, %f0, %f8;"
+      ]
+    },
+    {
+      "left_kind": "f32",
+      "right_kind": "u64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rn.f32.u64 %f8, %rd1;",
+        "    setp.eq.f32 %p8, %f0, %f8;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f32",
+      "op": "+",
+      "operand": "%d9",
+      "kind": "f64",
+      "lines": [
+        "    cvt.f64.f32 %d8, %f1;",
+        "    add.rn.f64 %d9, %d0, %d8;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.f64.f32 %d8, %f1;",
+        "    setp.eq.f64 %p8, %d0, %d8;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f64",
+      "op": "+",
+      "operand": "%d8",
+      "kind": "f64",
+      "lines": [
+        "    add.rn.f64 %d8, %d0, %d1;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f64",
+      "op": "-",
+      "operand": "%d8",
+      "kind": "f64",
+      "lines": [
+        "    sub.rn.f64 %d8, %d0, %d1;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f64",
+      "op": "*",
+      "operand": "%d8",
+      "kind": "f64",
+      "lines": [
+        "    mul.rn.f64 %d8, %d0, %d1;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f64",
+      "op": "/",
+      "operand": "%d8",
+      "kind": "f64",
+      "lines": [
+        "    div.rn.f64 %d8, %d0, %d1;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.eq.f64 %p8, %d0, %d1;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f64",
+      "op": "!=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.f64 %p8, %d0, %d1;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f64",
+      "op": "<",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.lt.f64 %p8, %d0, %d1;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f64",
+      "op": "<=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.le.f64 %p8, %d0, %d1;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f64",
+      "op": ">",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.gt.f64 %p8, %d0, %d1;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f64",
+      "op": ">=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ge.f64 %p8, %d0, %d1;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f64",
+      "op": "&&",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.neu.f64 %p9, %d0, 0d0000000000000000;",
+        "    setp.neu.f64 %p10, %d1, 0d0000000000000000;",
+        "    and.pred %p8, %p9, %p10;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "f64",
+      "op": "||",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.neu.f64 %p9, %d0, 0d0000000000000000;",
+        "    setp.neu.f64 %p10, %d1, 0d0000000000000000;",
+        "    or.pred %p8, %p9, %p10;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "s32",
+      "op": "+",
+      "operand": "%d9",
+      "kind": "f64",
+      "lines": [
+        "    cvt.rn.f64.s32 %d8, %r1;",
+        "    add.rn.f64 %d9, %d0, %d8;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "s32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rn.f64.s32 %d8, %r1;",
+        "    setp.eq.f64 %p8, %d0, %d8;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "s64",
+      "op": "+",
+      "operand": "%d9",
+      "kind": "f64",
+      "lines": [
+        "    cvt.rn.f64.s64 %d8, %l1;",
+        "    add.rn.f64 %d9, %d0, %d8;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "s64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rn.f64.s64 %d8, %l1;",
+        "    setp.eq.f64 %p8, %d0, %d8;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "u32",
+      "op": "+",
+      "operand": "%d9",
+      "kind": "f64",
+      "lines": [
+        "    cvt.rn.f64.u32 %d8, %u1;",
+        "    add.rn.f64 %d9, %d0, %d8;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "u32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rn.f64.u32 %d8, %u1;",
+        "    setp.eq.f64 %p8, %d0, %d8;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "u64",
+      "op": "+",
+      "operand": "%d9",
+      "kind": "f64",
+      "lines": [
+        "    cvt.rn.f64.u64 %d8, %rd1;",
+        "    add.rn.f64 %d9, %d0, %d8;"
+      ]
+    },
+    {
+      "left_kind": "f64",
+      "right_kind": "u64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rn.f64.u64 %d8, %rd1;",
+        "    setp.eq.f64 %p8, %d0, %d8;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "f32",
+      "op": "+",
+      "operand": "%r9",
+      "kind": "s32",
+      "lines": [
+        "    cvt.rzi.s32.f32 %r8, %f1;",
+        "    add.s32 %r9, %r0, %r8;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "f32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rzi.s32.f32 %r8, %f1;",
+        "    setp.eq.s32 %p8, %r0, %r8;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "f64",
+      "op": "+",
+      "operand": "%r9",
+      "kind": "s32",
+      "lines": [
+        "    cvt.rzi.s32.f64 %r8, %d1;",
+        "    add.s32 %r9, %r0, %r8;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "f64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rzi.s32.f64 %r8, %d1;",
+        "    setp.eq.s32 %p8, %r0, %r8;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "+",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    add.s32 %r8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "-",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    sub.s32 %r8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "*",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    mul.lo.s32 %r8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "/",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    div.s32 %r8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.eq.s32 %p8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "!=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.s32 %p8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "<",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.lt.s32 %p8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "<=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.le.s32 %p8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": ">",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.gt.s32 %p8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": ">=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ge.s32 %p8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "&&",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.s32 %p9, %r0, 0;",
+        "    setp.ne.s32 %p10, %r1, 0;",
+        "    and.pred %p8, %p9, %p10;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "||",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.s32 %p9, %r0, 0;",
+        "    setp.ne.s32 %p10, %r1, 0;",
+        "    or.pred %p8, %p9, %p10;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "//",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    div.s32 %r8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "%",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    rem.s32 %r8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "&",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    and.b32 %r8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "|",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    or.b32 %r8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "^",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    xor.b32 %r8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": "<<",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    shl.b32 %r8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s32",
+      "op": ">>",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    shr.s32 %r8, %r0, %r1;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s64",
+      "op": "+",
+      "operand": "%r9",
+      "kind": "s32",
+      "lines": [
+        "    cvt.s32.s64 %r8, %l1;",
+        "    add.s32 %r9, %r0, %r8;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "s64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.s32.s64 %r8, %l1;",
+        "    setp.eq.s32 %p8, %r0, %r8;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "u32",
+      "op": "+",
+      "operand": "%r9",
+      "kind": "s32",
+      "lines": [
+        "    cvt.s32.u32 %r8, %u1;",
+        "    add.s32 %r9, %r0, %r8;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "u32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.s32.u32 %r8, %u1;",
+        "    setp.eq.s32 %p8, %r0, %r8;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "u64",
+      "op": "+",
+      "operand": "%r9",
+      "kind": "s32",
+      "lines": [
+        "    cvt.s32.u64 %r8, %rd1;",
+        "    add.s32 %r9, %r0, %r8;"
+      ]
+    },
+    {
+      "left_kind": "s32",
+      "right_kind": "u64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.s32.u64 %r8, %rd1;",
+        "    setp.eq.s32 %p8, %r0, %r8;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "f32",
+      "op": "+",
+      "operand": "%l9",
+      "kind": "s64",
+      "lines": [
+        "    cvt.rzi.s64.f32 %l8, %f1;",
+        "    add.s64 %l9, %l0, %l8;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "f32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rzi.s64.f32 %l8, %f1;",
+        "    setp.eq.s64 %p8, %l0, %l8;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "f64",
+      "op": "+",
+      "operand": "%l9",
+      "kind": "s64",
+      "lines": [
+        "    cvt.rzi.s64.f64 %l8, %d1;",
+        "    add.s64 %l9, %l0, %l8;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "f64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rzi.s64.f64 %l8, %d1;",
+        "    setp.eq.s64 %p8, %l0, %l8;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s32",
+      "op": "+",
+      "operand": "%l9",
+      "kind": "s64",
+      "lines": [
+        "    cvt.s64.s32 %l8, %r1;",
+        "    add.s64 %l9, %l0, %l8;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.s64.s32 %l8, %r1;",
+        "    setp.eq.s64 %p8, %l0, %l8;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "+",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    add.s64 %l8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "-",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    sub.s64 %l8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "*",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    mul.lo.s64 %l8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "/",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    div.s64 %l8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.eq.s64 %p8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "!=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.s64 %p8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "<",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.lt.s64 %p8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "<=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.le.s64 %p8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": ">",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.gt.s64 %p8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": ">=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ge.s64 %p8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "&&",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.s64 %p9, %l0, 0;",
+        "    setp.ne.s64 %p10, %l1, 0;",
+        "    and.pred %p8, %p9, %p10;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "||",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.s64 %p9, %l0, 0;",
+        "    setp.ne.s64 %p10, %l1, 0;",
+        "    or.pred %p8, %p9, %p10;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "//",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    div.s64 %l8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "%",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    rem.s64 %l8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "&",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    and.b64 %l8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "|",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    or.b64 %l8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "^",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    xor.b64 %l8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": "<<",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    shl.b64 %l8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "s64",
+      "op": ">>",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    shr.s64 %l8, %l0, %l1;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "u32",
+      "op": "+",
+      "operand": "%l9",
+      "kind": "s64",
+      "lines": [
+        "    cvt.s64.u32 %l8, %u1;",
+        "    add.s64 %l9, %l0, %l8;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "u32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.s64.u32 %l8, %u1;",
+        "    setp.eq.s64 %p8, %l0, %l8;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "u64",
+      "op": "+",
+      "operand": "%l9",
+      "kind": "s64",
+      "lines": [
+        "    cvt.s64.u64 %l8, %rd1;",
+        "    add.s64 %l9, %l0, %l8;"
+      ]
+    },
+    {
+      "left_kind": "s64",
+      "right_kind": "u64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.s64.u64 %l8, %rd1;",
+        "    setp.eq.s64 %p8, %l0, %l8;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "f32",
+      "op": "+",
+      "operand": "%u9",
+      "kind": "u32",
+      "lines": [
+        "    cvt.rzi.u32.f32 %u8, %f1;",
+        "    add.u32 %u9, %u0, %u8;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "f32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rzi.u32.f32 %u8, %f1;",
+        "    setp.eq.u32 %p8, %u0, %u8;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "f64",
+      "op": "+",
+      "operand": "%u9",
+      "kind": "u32",
+      "lines": [
+        "    cvt.rzi.u32.f64 %u8, %d1;",
+        "    add.u32 %u9, %u0, %u8;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "f64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rzi.u32.f64 %u8, %d1;",
+        "    setp.eq.u32 %p8, %u0, %u8;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "s32",
+      "op": "+",
+      "operand": "%u9",
+      "kind": "u32",
+      "lines": [
+        "    cvt.u32.s32 %u8, %r1;",
+        "    add.u32 %u9, %u0, %u8;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "s32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.u32.s32 %u8, %r1;",
+        "    setp.eq.u32 %p8, %u0, %u8;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "s64",
+      "op": "+",
+      "operand": "%u9",
+      "kind": "u32",
+      "lines": [
+        "    cvt.u32.s64 %u8, %l1;",
+        "    add.u32 %u9, %u0, %u8;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "s64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.u32.s64 %u8, %l1;",
+        "    setp.eq.u32 %p8, %u0, %u8;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "+",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    add.u32 %u8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "-",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    sub.u32 %u8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "*",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    mul.lo.u32 %u8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "/",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    div.u32 %u8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.eq.u32 %p8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "!=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.u32 %p8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "<",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.lt.u32 %p8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "<=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.le.u32 %p8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": ">",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.gt.u32 %p8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": ">=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ge.u32 %p8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "&&",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.u32 %p9, %u0, 0;",
+        "    setp.ne.u32 %p10, %u1, 0;",
+        "    and.pred %p8, %p9, %p10;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "||",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.u32 %p9, %u0, 0;",
+        "    setp.ne.u32 %p10, %u1, 0;",
+        "    or.pred %p8, %p9, %p10;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "//",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    div.u32 %u8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "%",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    rem.u32 %u8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "&",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    and.b32 %u8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "|",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    or.b32 %u8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "^",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    xor.b32 %u8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": "<<",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    shl.b32 %u8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u32",
+      "op": ">>",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    shr.u32 %u8, %u0, %u1;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u64",
+      "op": "+",
+      "operand": "%u9",
+      "kind": "u32",
+      "lines": [
+        "    cvt.u32.u64 %u8, %rd1;",
+        "    add.u32 %u9, %u0, %u8;"
+      ]
+    },
+    {
+      "left_kind": "u32",
+      "right_kind": "u64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.u32.u64 %u8, %rd1;",
+        "    setp.eq.u32 %p8, %u0, %u8;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "f32",
+      "op": "+",
+      "operand": "%rd9",
+      "kind": "u64",
+      "lines": [
+        "    cvt.rzi.u64.f32 %rd8, %f1;",
+        "    add.u64 %rd9, %rd0, %rd8;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "f32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rzi.u64.f32 %rd8, %f1;",
+        "    setp.eq.u64 %p8, %rd0, %rd8;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "f64",
+      "op": "+",
+      "operand": "%rd9",
+      "kind": "u64",
+      "lines": [
+        "    cvt.rzi.u64.f64 %rd8, %d1;",
+        "    add.u64 %rd9, %rd0, %rd8;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "f64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.rzi.u64.f64 %rd8, %d1;",
+        "    setp.eq.u64 %p8, %rd0, %rd8;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "s32",
+      "op": "+",
+      "operand": "%rd9",
+      "kind": "u64",
+      "lines": [
+        "    cvt.u64.s32 %rd8, %r1;",
+        "    add.u64 %rd9, %rd0, %rd8;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "s32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.u64.s32 %rd8, %r1;",
+        "    setp.eq.u64 %p8, %rd0, %rd8;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "s64",
+      "op": "+",
+      "operand": "%rd9",
+      "kind": "u64",
+      "lines": [
+        "    cvt.u64.s64 %rd8, %l1;",
+        "    add.u64 %rd9, %rd0, %rd8;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "s64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.u64.s64 %rd8, %l1;",
+        "    setp.eq.u64 %p8, %rd0, %rd8;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u32",
+      "op": "+",
+      "operand": "%rd9",
+      "kind": "u64",
+      "lines": [
+        "    cvt.u64.u32 %rd8, %u1;",
+        "    add.u64 %rd9, %rd0, %rd8;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u32",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    cvt.u64.u32 %rd8, %u1;",
+        "    setp.eq.u64 %p8, %rd0, %rd8;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "+",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    add.u64 %rd8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "-",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    sub.u64 %rd8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "*",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    mul.lo.u64 %rd8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "/",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    div.u64 %rd8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "==",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.eq.u64 %p8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "!=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.u64 %p8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "<",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.lt.u64 %p8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "<=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.le.u64 %p8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": ">",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.gt.u64 %p8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": ">=",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ge.u64 %p8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "&&",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.u64 %p9, %rd0, 0;",
+        "    setp.ne.u64 %p10, %rd1, 0;",
+        "    and.pred %p8, %p9, %p10;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "||",
+      "operand": "%p8",
+      "kind": "pred",
+      "lines": [
+        "    setp.ne.u64 %p9, %rd0, 0;",
+        "    setp.ne.u64 %p10, %rd1, 0;",
+        "    or.pred %p8, %p9, %p10;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "//",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    div.u64 %rd8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "%",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    rem.u64 %rd8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "&",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    and.b64 %rd8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "|",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    or.b64 %rd8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "^",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    xor.b64 %rd8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": "<<",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    shl.b64 %rd8, %rd0, %rd1;"
+      ]
+    },
+    {
+      "left_kind": "u64",
+      "right_kind": "u64",
+      "op": ">>",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    shr.u64 %rd8, %rd0, %rd1;"
+      ]
+    }
+  ],
+  "claim": "Emission identity only, not native proof or repair of pre-existing numeric-only limitations"
+}

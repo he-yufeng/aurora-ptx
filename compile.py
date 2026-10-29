@@ -140,6 +140,11 @@ class PTX:
             self.emit(f"{'and' if op in ('&&','and') else 'or'}.pred {out.operand}, "
                       f"{self.predicate(left).operand}, {self.predicate(right).operand};")
             return out
+        if left.kind == "pred":
+            # Non-logical operators need numeric data, not predicate registers.
+            # A Boolean shift's promoted data type is int regardless of count width.
+            kind = "s32" if right.kind == "pred" or op in ("<<", ">>") else right.kind
+            left = self.convert(left, kind)
         right = self.convert(right, left.kind)
         if op in ("==", "!=", "<", "<=", ">", ">="):
             out = self.fresh("pred")

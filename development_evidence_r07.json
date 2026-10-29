@@ -1,0 +1,104 @@
+{
+  "schema": "aurora-ptx-development-evidence-r07/v1",
+  "date_utc": "2026-10-29",
+  "compiler_sha256": "5e6adddeedf59c4be833003b2277760b79db234f665f1f494c22bee228064687",
+  "prior_production_sha256": "4961d6459327fea3d3a65ce5bcb069f5ee1e8791cd1dacbc9739a42e8a65dea6",
+  "prior_public_commit": "3b145f7c4a8f4821a785e151cc47b2b3b90133ab",
+  "defect": {
+    "original_ir": "Equality of two comparison expressions, loaded through Graph.from_dict",
+    "old_instruction": "setp.eq.pred",
+    "native_rejection": "ptxas line 49: Unexpected instruction types specified for setp",
+    "probe_gets": 1,
+    "probe_compiles": 1,
+    "probe_runs": 0,
+    "probe_retries": 0
+  },
+  "repair": "Promote predicate-left operands to numeric data for non-logical BinaryExpr operations: int32 for predicate pairs and predicate shift data, otherwise the numeric peer type. Keep predicate logical operations and numeric-left lowering unchanged.",
+  "local_validation": {
+    "new_methods": 12,
+    "baseline_parameterized_failures": 89,
+    "baseline_errors": 0,
+    "total_tests_passed": 44,
+    "original32_assertions_unchanged": true,
+    "numeric_only_emission_rows_unchanged": 160
+  },
+  "historical_validation": {
+    "prior_ptx_byte_identical": 69,
+    "historical_gpu_reruns": 0
+  },
+  "native_validation": {
+    "completed_at_utc": "2026-10-29T08:49:00.913324+00:00",
+    "original_deadline_utc": "2026-10-29T09:45:00+00:00",
+    "cases_planned": 4,
+    "cases_passed": 4,
+    "full_exact_f32_outputs": 512,
+    "atol": 0,
+    "rtol": 0,
+    "health_gets": 1,
+    "posts": 8,
+    "known_responses": 8,
+    "unknown_responses": 0,
+    "retries": 0,
+    "independent_scalar_oracle": true,
+    "cases": [
+      {
+        "id": "predicate_pair_comparisons",
+        "outputs": 128,
+        "distinct_input_states": 4,
+        "max_abs_error": 0,
+        "ir_sha256": "ac54d8137400b8d3f5bdceec3b1a66192fc619b78825b2b787fec2369d8f3a1d",
+        "meta_sha256": "f6fba54f5db8d9ec4e0b477eb43aa5f52979f17959f8794a3c51c4fcab1eb4cc",
+        "ptx_sha256": "3c73c9cfa975a5ae911671d82e445e41a016870c7988eb7eb6eacb8614bd2a7c",
+        "compile_response_sha256": "83b303f41a4a5927482ceb0ef139d285bfdf9caa531b4ddbf5b5ffd39300cc2c",
+        "run_response_sha256": "bd7ab87a59057d26c94d6b78e4341112c1f5161af89322d5df5f1b6fc31cca22"
+      },
+      {
+        "id": "predicate_pair_arithmetic",
+        "outputs": 128,
+        "distinct_input_states": 4,
+        "max_abs_error": 0,
+        "ir_sha256": "6f9a82d9e662e1f70a37f448859c488e8bec139166ee9e8b364dab045d309910",
+        "meta_sha256": "a4095390792839dc90f759a51794c2bb9d6556360f8f376f00bdd0cb16511a16",
+        "ptx_sha256": "1bcf4a2d041c258f8b85050f4944d21e3389ebff4db0d8100a5ca21bf55c053e",
+        "compile_response_sha256": "ff2427a41f12db2a3bf3310f1c6635b5c2c24d32903d2b96923e66e60dddc5c9",
+        "run_response_sha256": "8129fec66be8b4a12798dade8c3ad2b48df274277f542c6fc73f0dc24a07e4ce"
+      },
+      {
+        "id": "predicate_numeric_peers",
+        "outputs": 128,
+        "distinct_input_states": 128,
+        "max_abs_error": 0,
+        "ir_sha256": "88c3041d52f26545c3dfb812d3c0bfdf2304dd836ddb1997ae80f6de320df8bf",
+        "meta_sha256": "3083c00c778d2c8008f2a3b813b2357eb22f859e4b97138cd79b4bade9ea11b3",
+        "ptx_sha256": "95155ac359ba5029320bc4678dfdbe4e28df210199b16dd90e67da50d98f8dcc",
+        "compile_response_sha256": "c31a5015e50cb56d35236aff952f3d501d41faa9891e156ac1b6013e424f0f21",
+        "run_response_sha256": "631d706d38c367828fc6f5d7f25f369ef09f16da546bb81abb1325c8c0a05e4c"
+      },
+      {
+        "id": "predicate_left_shifts",
+        "outputs": 128,
+        "distinct_input_states": 124,
+        "max_abs_error": 0,
+        "ir_sha256": "8844cf8c1d81ff6c217647f6ff013ad11edc4a455994c1684ecdc5475bb8c46b",
+        "meta_sha256": "b2bbdab2a032bed9e0a9bc3636ddef737398e4e599ccbf56626c30b0209916b8",
+        "ptx_sha256": "7529e0d4870cedac7d1b21aa42d644764e40b716e5e5568a86f77995e9c04ba2",
+        "compile_response_sha256": "bfceb502cb2f54e2a65f1949a0804f1fc296036cb76f3bf521f22c65ed4caec9",
+        "run_response_sha256": "a607c321a25198664b46ee240b4807ba9c96499a78084d6d3e5b537eaba0b22c"
+      }
+    ]
+  },
+  "reproduction": {
+    "generator": "tools/make_predicate_binary_cases.py",
+    "tests": "test_predicate_binary.py",
+    "numeric_emission_baseline": "tests/predicate_binary_numeric_baseline.json",
+    "network_or_gpu_required_for_fixture_generation": false
+  },
+  "limitations": [
+    "Finite original development fixtures, not hidden evaluation or a general type-system proof",
+    "Shift left value is checked through an integer round trip, not a separate raw shifted-output buffer; emitted type/count bindings are independently inspected",
+    "No repair or replay of sealed R04 numeric-64-bit-data shifts; no general IEEE comparison claim",
+    "Only the five named scalar IR numeric types are in native mixed-peer coverage; internal u64 emission tests do not add a U64 graph dtype.",
+    "The sealed R02 and R04 unknown requests were not replayed; R04's unpromoted numeric 64-bit shift candidate is not incorporated.",
+    "No hidden-set score, rank, prize, speed superiority, organizer evaluation or exhaustive dtype/operator coverage is claimed."
+  ]
+}
