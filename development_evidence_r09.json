@@ -1,0 +1,107 @@
+{
+  "schema": "aurora-ptx-development-evidence/r09",
+  "date": "2026-10-29",
+  "compiler_sha256": "0ffbe1ffab9484df2a730d10bceddfd85f764a30df41708adc56381d93b7b23c",
+  "change": "Binary f32/f64 != uses unordered neu, which is true if either operand is NaN. Other five floating comparisons and integer comparisons retain existing instructions.",
+  "source_lines_added": 3,
+  "baseline_counterexample": {
+    "source_sha256": "da0ef3d4b66ead0b58dddc07f4705ad2b5ca53600de2f76cc3ef84929de9adf8",
+    "complete_outputs": 128,
+    "wrong_nan_lanes": 16,
+    "other_outputs_matching": 112,
+    "float_types": [
+      "f32",
+      "f64"
+    ],
+    "requests": {
+      "health_get": 1,
+      "post": 2,
+      "unknown": 0
+    }
+  },
+  "local": {
+    "tests": 68,
+    "pass": true,
+    "new_test_methods": 12,
+    "baseline_parameterized_failures": 21,
+    "baseline_errors": 0,
+    "legacy_numeric_matrix_rows": 160,
+    "legacy_numeric_json_unchanged": true,
+    "intentional_expected_rows_corrected": 2,
+    "other_numeric_emission_rows_unchanged": 158,
+    "original_test_preimage_retained_privately": true
+  },
+  "historical": {
+    "ptx_files_byte_identical": 77,
+    "old_native_results_reused": true,
+    "historical_gpu_reruns": 0
+  },
+  "native": {
+    "source": "Organizer development runner, not hidden evaluation",
+    "completed_at_utc": "2026-10-29T11:09:44.170422+00:00",
+    "fixed_cases": 4,
+    "passed": 4,
+    "complete_exact_f32_outputs": 512,
+    "max_abs_error": 0,
+    "atol": 0,
+    "rtol": 0,
+    "post_requests": 8,
+    "unknown": 0,
+    "cases": [
+      {
+        "id": "f32_comparison_pairs",
+        "outputs": 128,
+        "distinct_input_pairs": 64,
+        "ptx_sha256": "2a1c913590f678611b1701fa348d38c35d6c7f9b48d2ddf8719bd850ca523429",
+        "raw_response_sha256": "d06bd054c3b1a857c67d13f9df3aef432de5542e9a6c479a6997937572d55585"
+      },
+      {
+        "id": "f64_comparison_pairs",
+        "outputs": 128,
+        "distinct_input_pairs": 64,
+        "ptx_sha256": "ad33cf29ae7b7b7e0e08906134ed28bf393c89c4e9b94ba41ddd8d6a8519575e",
+        "raw_response_sha256": "78dd3eddaa49644288d5f3837670f8858f5bd4213780f7ecd1445d82d8e89352"
+      },
+      {
+        "id": "mixed_boolean_inequality",
+        "outputs": 128,
+        "distinct_input_pairs": 128,
+        "ptx_sha256": "eb4c14fe2fdd20aac50aceaec0cd8dcba1b358c7c6a37083d807758035d3d218",
+        "raw_response_sha256": "c8e33069bfdeee2dd5b77eab1bf0bf8ad55ffe1905abd8d4d2b0278b38a5230b"
+      },
+      {
+        "id": "inequality_control_flow",
+        "outputs": 128,
+        "distinct_input_pairs": 128,
+        "ptx_sha256": "db5fa28ed62a1f0823ce53d708cd149edd224f310fe5f6c6fd2544f3dcf116c4",
+        "raw_response_sha256": "66b3c8981cd344ad7bfb07d139e5ccc0a4c3f5d13b1a2828c13b72756b97a28c"
+      }
+    ]
+  },
+  "independent_audit": {
+    "pass": true,
+    "method": "Generic interpreter of frozen Graph IR with explicit IEEE zero division, dtype casts, branches and writes; no factory/controller/oracle imports",
+    "baseline_wrong_lanes": 16,
+    "all_four_cond_write_leaves_exercised": true
+  },
+  "semantic_sources": [
+    "https://github.com/cloudrift-ai/emmy-hackathon-2026/blob/main/TASK.md",
+    "https://docs.nvidia.com/cuda/parallel-thread-execution/#comparison-and-selection-instructions-setp",
+    "https://docs.python.org/3/reference/expressions.html#value-comparisons"
+  ],
+  "typed_ir_note": "Emmy op_to_expr maps non-integer not_equal to !=. Its apply_binop helper omits != and was not used as the reference oracle. No existing renderer/compiler was used for PTX lowering.",
+  "limitations": [
+    "No general IEEE or promotion proof",
+    "No NaN payload/signaling/exceptions proof",
+    "No signed-zero output-bit proof",
+    "Not hidden-set inputs or official grading"
+  ],
+  "preserved_stops": [
+    "R02 unknown compile request was not replayed or promoted",
+    "R04 incomplete shift-count candidate was not incorporated",
+    "R05-R08 completed native gates were not reopened"
+  ],
+  "hidden_score": null,
+  "rank": null,
+  "award": null
+}

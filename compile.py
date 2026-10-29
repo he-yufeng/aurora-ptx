@@ -149,6 +149,9 @@ class PTX:
         if op in ("==", "!=", "<", "<=", ">", ">="):
             out = self.fresh("pred")
             cmp = {"==": "eq", "!=": "ne", "<": "lt", "<=": "le", ">": "gt", ">=": "ge"}[op]
+            if op == "!=" and left.kind.startswith("f"):
+                # IEEE inequality is true if either operand is NaN.
+                cmp = "neu"
             self.emit(f"setp.{cmp}.{left.kind} {out.operand}, {left.operand}, {right.operand};")
             return out
         out = self.fresh(left.kind)

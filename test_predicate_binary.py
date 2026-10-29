@@ -147,10 +147,13 @@ class PredicateBinaryTests(unittest.TestCase):
                 self.assertTrue(text.isascii())
                 valid_predicate_use(self, text)
 
-    def test_original_numeric_only_emission_matrix_is_unchanged(self):
+    def test_numeric_emission_changes_only_ieee_float_inequality(self):
         self.assertEqual(BASELINE["source_sha256"], "4961d6459327fea3d3a65ce5bcb069f5ee1e8791cd1dacbc9739a42e8a65dea6")
         self.assertGreaterEqual(len(BASELINE["rows"]), 100)
         for row in BASELINE["rows"]:
             p = stub()
             got = p.binary(row["op"], value(row["left_kind"]), value(row["right_kind"], 1))
-            self.assertEqual((got.operand, got.kind, p.lines), (row["operand"], row["kind"], row["lines"]))
+            expected_lines = row["lines"]
+            if row["op"] == "!=" and row["left_kind"] in ("f32", "f64"):
+                expected_lines = [line.replace("setp.ne.", "setp.neu.") for line in expected_lines]
+            self.assertEqual((got.operand, got.kind, p.lines), (row["operand"], row["kind"], expected_lines))

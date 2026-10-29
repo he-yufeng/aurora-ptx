@@ -20,6 +20,8 @@ On October29, R07 reproduced a separate nested-comparison defect: equality of tw
 
 On October29, R08 fixed a separately reproduced mixed-selection defect: a predicate true arm and numeric false arm incorrectly produced `selp.pred`. The predicate true value is now materialized in the numeric peer's type before the existing numeric selection; predicate-pair logic and all numeric-true/numeric-only paths are unchanged. **Four fixed native cases passed all512 exact finite f32 outputs**, covering five scalar numeric types in both branch orders, nested Boolean literals/aliases, and truth after selecting internal f32/f64 NaN/Inf/zero/finite values. All56 local tests passed;72 numeric-arm/condition emission rows and73 prior PTX files stayed unchanged, without historical GPU reruns. See [development_evidence_r08.json](development_evidence_r08.json). This is finite development validation, not a hidden grade or a general IEEE/type-system proof.
 
+On October29, R09 fixed an independently executed floating-inequality counterexample: the old `setp.ne` returned false for NaN in both f32 and f64, producing16 wrong lanes out of128. Binary floating `!=` now emits `setp.neu`; the other five floating comparisons and integer comparisons are unchanged. **Four fixed native cases passed all512 exact finite f32 outputs**: every ordered pair of eight special/finite classes in each floating width, both predicate/numeric operand orders, and nested conditional writes. All68 local tests passed, and77 prior PTX files stayed byte-identical without historical GPU reruns. See [development_evidence_r09.json](development_evidence_r09.json). The old160-row numeric-emission JSON remains unchanged; exactly its two floating-inequality expectations are explicitly corrected in the versioned tests, not silently treated as invariants. A separate interpreter evaluated the frozen serialized IR and all four Write leaves were exercised. These results do not establish hidden scores, prizes, general IEEE conformance, NaN payload/signaling behavior, or signed-zero output-bit behavior. [PTX comparison rules](https://docs.nvidia.com/cuda/parallel-thread-execution/#comparison-and-selection-instructions-setp) explain why floating inequality needs `neu`.
+
 ## Run
 
 Python 3.12+ is required; the recorded environment used Python 3.13.11.
@@ -35,6 +37,7 @@ git clone --depth 1 https://github.com/cloudrift-ai/emmy-hackathon-2026 ../upstr
 .venv/bin/python -m unittest test_materialization
 .venv/bin/python -m unittest test_predicate_binary
 .venv/bin/python -m unittest test_mixed_select
+.venv/bin/python -m unittest test_float_comparisons
 ```
 
 The minimal dependency set intentionally supports IR deserialization, not every feature of the Emmy application. No Torch, CUDA toolkit, or local GPU is required to generate PTX. For optional real-GPU checks, install `requests` and use the official [submit.py](https://github.com/cloudrift-ai/emmy-hackathon-2026/blob/main/submit.py) with this compiler. Read the organizer's API limits first; do not flood the shared runner.
@@ -89,7 +92,16 @@ The four predicate-operand cases can be generated without network or GPU calls:
 .venv/bin/python compile.py tools/predicate_binary_cases/predicate_numeric_peers/k_r07_predicate_numeric_peers.ir.json > out.ptx
 ```
 
-The generator refuses existing output directories. Its exact scalar oracles and temporary-fixture tests are validation infrastructure, not compiler inputs or a translation backend. `test_predicate_binary.py` also preserves160 frozen numeric-only emission rows from the preceding published compiler; emission identity alone does not validate pre-existing numeric-only limitations.
+The generator refuses existing output directories. Its exact scalar oracles and temporary-fixture tests are validation infrastructure, not compiler inputs or a translation backend. `test_predicate_binary.py` retains the original160-row numeric-emission JSON. R09 explicitly corrects only its two floating `!=` expected instructions; the other158 remain unchanged. Emission identity alone does not validate pre-existing numeric-only limitations.
+
+The four floating-comparison fixtures can also be generated offline:
+
+```sh
+.venv/bin/python tools/make_float_comparison_cases.py
+.venv/bin/python compile.py tools/float_comparison_cases/f32_comparison_pairs/k_r09_f32_comparison_pairs.ir.json > out.ptx
+```
+
+The generator uses finite external inputs; NaN, infinities and both zero signs are constructed inside the IR. Its exact finite bit-coded outputs distinguish all six comparisons and conditional writes. It refuses existing fixture directories and makes no network or GPU calls.
 
 The four mixed-selection contexts are independently generated offline:
 
