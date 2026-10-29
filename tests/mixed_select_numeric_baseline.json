@@ -1,0 +1,792 @@
+{
+  "source_sha256": "5e6adddeedf59c4be833003b2277760b79db234f665f1f494c22bee228064687",
+  "rows": [
+    {
+      "condition_kind": "f32",
+      "a_kind": "f32",
+      "b_kind": "f32",
+      "operand": "%f8",
+      "kind": "f32",
+      "lines": [
+        "    setp.neu.f32 %p8, %f0, 0f00000000;",
+        "    selp.f32 %f8, %f1, %f2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "f32",
+      "a_kind": "f64",
+      "b_kind": "f64",
+      "operand": "%d8",
+      "kind": "f64",
+      "lines": [
+        "    setp.neu.f32 %p8, %f0, 0f00000000;",
+        "    selp.f64 %d8, %d1, %d2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "f32",
+      "a_kind": "s32",
+      "b_kind": "s32",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    setp.neu.f32 %p8, %f0, 0f00000000;",
+        "    selp.s32 %r8, %r1, %r2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "f32",
+      "a_kind": "s64",
+      "b_kind": "s64",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    setp.neu.f32 %p8, %f0, 0f00000000;",
+        "    selp.s64 %l8, %l1, %l2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "f32",
+      "a_kind": "u32",
+      "b_kind": "u32",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    setp.neu.f32 %p8, %f0, 0f00000000;",
+        "    selp.u32 %u8, %u1, %u2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "f32",
+      "a_kind": "u64",
+      "b_kind": "u64",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    setp.neu.f32 %p8, %f0, 0f00000000;",
+        "    selp.u64 %rd8, %rd1, %rd2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "f64",
+      "a_kind": "f32",
+      "b_kind": "f32",
+      "operand": "%f8",
+      "kind": "f32",
+      "lines": [
+        "    setp.neu.f64 %p8, %d0, 0d0000000000000000;",
+        "    selp.f32 %f8, %f1, %f2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "f64",
+      "a_kind": "f64",
+      "b_kind": "f64",
+      "operand": "%d8",
+      "kind": "f64",
+      "lines": [
+        "    setp.neu.f64 %p8, %d0, 0d0000000000000000;",
+        "    selp.f64 %d8, %d1, %d2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "f64",
+      "a_kind": "s32",
+      "b_kind": "s32",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    setp.neu.f64 %p8, %d0, 0d0000000000000000;",
+        "    selp.s32 %r8, %r1, %r2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "f64",
+      "a_kind": "s64",
+      "b_kind": "s64",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    setp.neu.f64 %p8, %d0, 0d0000000000000000;",
+        "    selp.s64 %l8, %l1, %l2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "f64",
+      "a_kind": "u32",
+      "b_kind": "u32",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    setp.neu.f64 %p8, %d0, 0d0000000000000000;",
+        "    selp.u32 %u8, %u1, %u2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "f64",
+      "a_kind": "u64",
+      "b_kind": "u64",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    setp.neu.f64 %p8, %d0, 0d0000000000000000;",
+        "    selp.u64 %rd8, %rd1, %rd2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "s32",
+      "a_kind": "f32",
+      "b_kind": "f32",
+      "operand": "%f8",
+      "kind": "f32",
+      "lines": [
+        "    setp.ne.s32 %p8, %r0, 0;",
+        "    selp.f32 %f8, %f1, %f2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "s32",
+      "a_kind": "f64",
+      "b_kind": "f64",
+      "operand": "%d8",
+      "kind": "f64",
+      "lines": [
+        "    setp.ne.s32 %p8, %r0, 0;",
+        "    selp.f64 %d8, %d1, %d2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "s32",
+      "a_kind": "s32",
+      "b_kind": "s32",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    setp.ne.s32 %p8, %r0, 0;",
+        "    selp.s32 %r8, %r1, %r2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "s32",
+      "a_kind": "s64",
+      "b_kind": "s64",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    setp.ne.s32 %p8, %r0, 0;",
+        "    selp.s64 %l8, %l1, %l2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "s32",
+      "a_kind": "u32",
+      "b_kind": "u32",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    setp.ne.s32 %p8, %r0, 0;",
+        "    selp.u32 %u8, %u1, %u2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "s32",
+      "a_kind": "u64",
+      "b_kind": "u64",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    setp.ne.s32 %p8, %r0, 0;",
+        "    selp.u64 %rd8, %rd1, %rd2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "s64",
+      "a_kind": "f32",
+      "b_kind": "f32",
+      "operand": "%f8",
+      "kind": "f32",
+      "lines": [
+        "    setp.ne.s64 %p8, %l0, 0;",
+        "    selp.f32 %f8, %f1, %f2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "s64",
+      "a_kind": "f64",
+      "b_kind": "f64",
+      "operand": "%d8",
+      "kind": "f64",
+      "lines": [
+        "    setp.ne.s64 %p8, %l0, 0;",
+        "    selp.f64 %d8, %d1, %d2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "s64",
+      "a_kind": "s32",
+      "b_kind": "s32",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    setp.ne.s64 %p8, %l0, 0;",
+        "    selp.s32 %r8, %r1, %r2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "s64",
+      "a_kind": "s64",
+      "b_kind": "s64",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    setp.ne.s64 %p8, %l0, 0;",
+        "    selp.s64 %l8, %l1, %l2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "s64",
+      "a_kind": "u32",
+      "b_kind": "u32",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    setp.ne.s64 %p8, %l0, 0;",
+        "    selp.u32 %u8, %u1, %u2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "s64",
+      "a_kind": "u64",
+      "b_kind": "u64",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    setp.ne.s64 %p8, %l0, 0;",
+        "    selp.u64 %rd8, %rd1, %rd2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "u32",
+      "a_kind": "f32",
+      "b_kind": "f32",
+      "operand": "%f8",
+      "kind": "f32",
+      "lines": [
+        "    setp.ne.u32 %p8, %u0, 0;",
+        "    selp.f32 %f8, %f1, %f2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "u32",
+      "a_kind": "f64",
+      "b_kind": "f64",
+      "operand": "%d8",
+      "kind": "f64",
+      "lines": [
+        "    setp.ne.u32 %p8, %u0, 0;",
+        "    selp.f64 %d8, %d1, %d2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "u32",
+      "a_kind": "s32",
+      "b_kind": "s32",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    setp.ne.u32 %p8, %u0, 0;",
+        "    selp.s32 %r8, %r1, %r2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "u32",
+      "a_kind": "s64",
+      "b_kind": "s64",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    setp.ne.u32 %p8, %u0, 0;",
+        "    selp.s64 %l8, %l1, %l2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "u32",
+      "a_kind": "u32",
+      "b_kind": "u32",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    setp.ne.u32 %p8, %u0, 0;",
+        "    selp.u32 %u8, %u1, %u2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "u32",
+      "a_kind": "u64",
+      "b_kind": "u64",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    setp.ne.u32 %p8, %u0, 0;",
+        "    selp.u64 %rd8, %rd1, %rd2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "u64",
+      "a_kind": "f32",
+      "b_kind": "f32",
+      "operand": "%f8",
+      "kind": "f32",
+      "lines": [
+        "    setp.ne.u64 %p8, %rd0, 0;",
+        "    selp.f32 %f8, %f1, %f2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "u64",
+      "a_kind": "f64",
+      "b_kind": "f64",
+      "operand": "%d8",
+      "kind": "f64",
+      "lines": [
+        "    setp.ne.u64 %p8, %rd0, 0;",
+        "    selp.f64 %d8, %d1, %d2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "u64",
+      "a_kind": "s32",
+      "b_kind": "s32",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    setp.ne.u64 %p8, %rd0, 0;",
+        "    selp.s32 %r8, %r1, %r2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "u64",
+      "a_kind": "s64",
+      "b_kind": "s64",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    setp.ne.u64 %p8, %rd0, 0;",
+        "    selp.s64 %l8, %l1, %l2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "u64",
+      "a_kind": "u32",
+      "b_kind": "u32",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    setp.ne.u64 %p8, %rd0, 0;",
+        "    selp.u32 %u8, %u1, %u2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "u64",
+      "a_kind": "u64",
+      "b_kind": "u64",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    setp.ne.u64 %p8, %rd0, 0;",
+        "    selp.u64 %rd8, %rd1, %rd2, %p8;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "f32",
+      "b_kind": "f32",
+      "operand": "%f8",
+      "kind": "f32",
+      "lines": [
+        "    selp.f32 %f8, %f1, %f2, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "f32",
+      "b_kind": "f64",
+      "operand": "%f9",
+      "kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.f64 %f8, %d2;",
+        "    selp.f32 %f9, %f1, %f8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "f32",
+      "b_kind": "s32",
+      "operand": "%f9",
+      "kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.s32 %f8, %r2;",
+        "    selp.f32 %f9, %f1, %f8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "f32",
+      "b_kind": "s64",
+      "operand": "%f9",
+      "kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.s64 %f8, %l2;",
+        "    selp.f32 %f9, %f1, %f8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "f32",
+      "b_kind": "u32",
+      "operand": "%f9",
+      "kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.u32 %f8, %u2;",
+        "    selp.f32 %f9, %f1, %f8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "f32",
+      "b_kind": "u64",
+      "operand": "%f9",
+      "kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.u64 %f8, %rd2;",
+        "    selp.f32 %f9, %f1, %f8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "f64",
+      "b_kind": "f32",
+      "operand": "%d9",
+      "kind": "f64",
+      "lines": [
+        "    cvt.f64.f32 %d8, %f2;",
+        "    selp.f64 %d9, %d1, %d8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "f64",
+      "b_kind": "f64",
+      "operand": "%d8",
+      "kind": "f64",
+      "lines": [
+        "    selp.f64 %d8, %d1, %d2, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "f64",
+      "b_kind": "s32",
+      "operand": "%d9",
+      "kind": "f64",
+      "lines": [
+        "    cvt.rn.f64.s32 %d8, %r2;",
+        "    selp.f64 %d9, %d1, %d8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "f64",
+      "b_kind": "s64",
+      "operand": "%d9",
+      "kind": "f64",
+      "lines": [
+        "    cvt.rn.f64.s64 %d8, %l2;",
+        "    selp.f64 %d9, %d1, %d8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "f64",
+      "b_kind": "u32",
+      "operand": "%d9",
+      "kind": "f64",
+      "lines": [
+        "    cvt.rn.f64.u32 %d8, %u2;",
+        "    selp.f64 %d9, %d1, %d8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "f64",
+      "b_kind": "u64",
+      "operand": "%d9",
+      "kind": "f64",
+      "lines": [
+        "    cvt.rn.f64.u64 %d8, %rd2;",
+        "    selp.f64 %d9, %d1, %d8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "s32",
+      "b_kind": "f32",
+      "operand": "%r9",
+      "kind": "s32",
+      "lines": [
+        "    cvt.rzi.s32.f32 %r8, %f2;",
+        "    selp.s32 %r9, %r1, %r8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "s32",
+      "b_kind": "f64",
+      "operand": "%r9",
+      "kind": "s32",
+      "lines": [
+        "    cvt.rzi.s32.f64 %r8, %d2;",
+        "    selp.s32 %r9, %r1, %r8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "s32",
+      "b_kind": "s32",
+      "operand": "%r8",
+      "kind": "s32",
+      "lines": [
+        "    selp.s32 %r8, %r1, %r2, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "s32",
+      "b_kind": "s64",
+      "operand": "%r9",
+      "kind": "s32",
+      "lines": [
+        "    cvt.s32.s64 %r8, %l2;",
+        "    selp.s32 %r9, %r1, %r8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "s32",
+      "b_kind": "u32",
+      "operand": "%r9",
+      "kind": "s32",
+      "lines": [
+        "    cvt.s32.u32 %r8, %u2;",
+        "    selp.s32 %r9, %r1, %r8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "s32",
+      "b_kind": "u64",
+      "operand": "%r9",
+      "kind": "s32",
+      "lines": [
+        "    cvt.s32.u64 %r8, %rd2;",
+        "    selp.s32 %r9, %r1, %r8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "s64",
+      "b_kind": "f32",
+      "operand": "%l9",
+      "kind": "s64",
+      "lines": [
+        "    cvt.rzi.s64.f32 %l8, %f2;",
+        "    selp.s64 %l9, %l1, %l8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "s64",
+      "b_kind": "f64",
+      "operand": "%l9",
+      "kind": "s64",
+      "lines": [
+        "    cvt.rzi.s64.f64 %l8, %d2;",
+        "    selp.s64 %l9, %l1, %l8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "s64",
+      "b_kind": "s32",
+      "operand": "%l9",
+      "kind": "s64",
+      "lines": [
+        "    cvt.s64.s32 %l8, %r2;",
+        "    selp.s64 %l9, %l1, %l8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "s64",
+      "b_kind": "s64",
+      "operand": "%l8",
+      "kind": "s64",
+      "lines": [
+        "    selp.s64 %l8, %l1, %l2, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "s64",
+      "b_kind": "u32",
+      "operand": "%l9",
+      "kind": "s64",
+      "lines": [
+        "    cvt.s64.u32 %l8, %u2;",
+        "    selp.s64 %l9, %l1, %l8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "s64",
+      "b_kind": "u64",
+      "operand": "%l9",
+      "kind": "s64",
+      "lines": [
+        "    cvt.s64.u64 %l8, %rd2;",
+        "    selp.s64 %l9, %l1, %l8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "u32",
+      "b_kind": "f32",
+      "operand": "%u9",
+      "kind": "u32",
+      "lines": [
+        "    cvt.rzi.u32.f32 %u8, %f2;",
+        "    selp.u32 %u9, %u1, %u8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "u32",
+      "b_kind": "f64",
+      "operand": "%u9",
+      "kind": "u32",
+      "lines": [
+        "    cvt.rzi.u32.f64 %u8, %d2;",
+        "    selp.u32 %u9, %u1, %u8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "u32",
+      "b_kind": "s32",
+      "operand": "%u9",
+      "kind": "u32",
+      "lines": [
+        "    cvt.u32.s32 %u8, %r2;",
+        "    selp.u32 %u9, %u1, %u8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "u32",
+      "b_kind": "s64",
+      "operand": "%u9",
+      "kind": "u32",
+      "lines": [
+        "    cvt.u32.s64 %u8, %l2;",
+        "    selp.u32 %u9, %u1, %u8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "u32",
+      "b_kind": "u32",
+      "operand": "%u8",
+      "kind": "u32",
+      "lines": [
+        "    selp.u32 %u8, %u1, %u2, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "u32",
+      "b_kind": "u64",
+      "operand": "%u9",
+      "kind": "u32",
+      "lines": [
+        "    cvt.u32.u64 %u8, %rd2;",
+        "    selp.u32 %u9, %u1, %u8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "u64",
+      "b_kind": "f32",
+      "operand": "%rd9",
+      "kind": "u64",
+      "lines": [
+        "    cvt.rzi.u64.f32 %rd8, %f2;",
+        "    selp.u64 %rd9, %rd1, %rd8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "u64",
+      "b_kind": "f64",
+      "operand": "%rd9",
+      "kind": "u64",
+      "lines": [
+        "    cvt.rzi.u64.f64 %rd8, %d2;",
+        "    selp.u64 %rd9, %rd1, %rd8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "u64",
+      "b_kind": "s32",
+      "operand": "%rd9",
+      "kind": "u64",
+      "lines": [
+        "    cvt.u64.s32 %rd8, %r2;",
+        "    selp.u64 %rd9, %rd1, %rd8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "u64",
+      "b_kind": "s64",
+      "operand": "%rd9",
+      "kind": "u64",
+      "lines": [
+        "    cvt.u64.s64 %rd8, %l2;",
+        "    selp.u64 %rd9, %rd1, %rd8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "u64",
+      "b_kind": "u32",
+      "operand": "%rd9",
+      "kind": "u64",
+      "lines": [
+        "    cvt.u64.u32 %rd8, %u2;",
+        "    selp.u64 %rd9, %rd1, %rd8, %p0;"
+      ]
+    },
+    {
+      "condition_kind": "pred",
+      "a_kind": "u64",
+      "b_kind": "u64",
+      "operand": "%rd8",
+      "kind": "u64",
+      "lines": [
+        "    selp.u64 %rd8, %rd1, %rd2, %p0;"
+      ]
+    }
+  ],
+  "claim": "Emission identity only; not a new general numeric-promotion proof"
+}

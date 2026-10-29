@@ -199,6 +199,9 @@ class PTX:
                 self.emit(f"and.pred {no.operand}, {inv.operand}, {b.operand};")
                 self.emit(f"or.pred {dst.operand}, {yes.operand}, {no.operand};")
                 return dst
+            if a.kind == "pred":
+                # Mixed Boolean/numeric branches select in the numeric arm's type.
+                a = self.convert(a, b.kind)
             b = self.convert(b, a.kind)
             dst = self.fresh(a.kind)
             self.emit(f"selp.{a.kind} {dst.operand}, {a.operand}, {b.operand}, {cond.operand};")

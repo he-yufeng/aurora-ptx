@@ -18,6 +18,8 @@ On October29, R06 fixed the independently reproduced typed-materialization defec
 
 On October29, R07 reproduced a separate nested-comparison defect: equality of two comparison results emitted invalid `setp.eq.pred`. Non-logical binary operations now promote a predicate left operand to numeric data; Boolean pairs and Boolean shift data become int32, while a numeric peer supplies the other arithmetic type. Predicate logical operations and numeric-left emission are unchanged. **Four fixed native cases passed all512 exact f32 outputs**, covering six pair comparisons, Boolean arithmetic/bitwise operations with safe nonzero divisors, five scalar numeric peer types, and valid predicate-data shift contexts. All44 local tests passed;160 numeric-only emission rows and69 prior PTX files stayed unchanged, without historical GPU reruns. See [development_evidence_r07.json](development_evidence_r07.json). The left-shift native context checks an integer round trip rather than a separate raw shifted-output buffer; no general shift/type-system or hidden-grade claim is made.
 
+On October29, R08 fixed a separately reproduced mixed-selection defect: a predicate true arm and numeric false arm incorrectly produced `selp.pred`. The predicate true value is now materialized in the numeric peer's type before the existing numeric selection; predicate-pair logic and all numeric-true/numeric-only paths are unchanged. **Four fixed native cases passed all512 exact finite f32 outputs**, covering five scalar numeric types in both branch orders, nested Boolean literals/aliases, and truth after selecting internal f32/f64 NaN/Inf/zero/finite values. All56 local tests passed;72 numeric-arm/condition emission rows and73 prior PTX files stayed unchanged, without historical GPU reruns. See [development_evidence_r08.json](development_evidence_r08.json). This is finite development validation, not a hidden grade or a general IEEE/type-system proof.
+
 ## Run
 
 Python 3.12+ is required; the recorded environment used Python 3.13.11.
@@ -32,6 +34,7 @@ git clone --depth 1 https://github.com/cloudrift-ai/emmy-hackathon-2026 ../upstr
 .venv/bin/python -m unittest test_predicate_select
 .venv/bin/python -m unittest test_materialization
 .venv/bin/python -m unittest test_predicate_binary
+.venv/bin/python -m unittest test_mixed_select
 ```
 
 The minimal dependency set intentionally supports IR deserialization, not every feature of the Emmy application. No Torch, CUDA toolkit, or local GPU is required to generate PTX. For optional real-GPU checks, install `requests` and use the official [submit.py](https://github.com/cloudrift-ai/emmy-hackathon-2026/blob/main/submit.py) with this compiler. Read the organizer's API limits first; do not flood the shared runner.
@@ -88,6 +91,15 @@ The four predicate-operand cases can be generated without network or GPU calls:
 
 The generator refuses existing output directories. Its exact scalar oracles and temporary-fixture tests are validation infrastructure, not compiler inputs or a translation backend. `test_predicate_binary.py` also preserves160 frozen numeric-only emission rows from the preceding published compiler; emission identity alone does not validate pre-existing numeric-only limitations.
 
+The four mixed-selection contexts are independently generated offline:
+
+```sh
+.venv/bin/python tools/make_mixed_select_cases.py
+.venv/bin/python compile.py tools/mixed_select_cases/nested_literals_and_aliases/k_r08_nested_literals_and_aliases.ir.json > out.ptx
+```
+
+The generator refuses existing output directories and makes no network/GPU calls. Its finite scalar and selected-truth oracles are test infrastructure, not inputs read by the compiler. `test_mixed_select.py` preserves72 frozen numeric-arm/condition emission rows from the prior public compiler; identity is not a proof of pre-existing numeric-only limitations.
+
 ## Design
 
 1. Deserialize with the required `Graph.from_dict` API and bind the ABI from launch metadata.
@@ -99,6 +111,8 @@ The generator refuses existing output directories. Its exact scalar oracles and 
 See [WALKTHROUGH.md](WALKTHROUGH.md) for the invariants and failure analysis.
 
 ## Boundaries
+
+R08 adds only its four named mixed-selection contexts across f32/f64/s32/s64/u32 scalar IR; internal u64 checks remain local-only. Its nonfinite test checks truth after selection, not blanket IEEE arithmetic/comparison or signed-zero output-bit correctness. It does not change general mixed-numeric promotions, add Boolean memory/U64 graph types, or incorporate the sealed R04 shift candidate.
 
 The broad verified campaigns are f32/static-shape; R03 adds only the five declared f64/i64 reduction checks, R05 the four predicate-selection contexts, R06 the four scalar-materialization contexts, and R07 the four predicate-operand contexts, not general dtype/operator support. R06/R07 cover f32/f64/s32/s64/u32 scalar IR and locally check internal u64 registers; they do not add a U64 graph dtype or Boolean memory operations. R06's nonfinite truth test is not blanket IEEE exceptional-value correctness for all arithmetic and comparison operators. R07 does not repair general mixed-numeric promotions or incorporate the sealed R04 numeric-64-bit-data shift candidate. The implementation rejects unsupported IR rather than falling back to an existing compiler. Non-NONE shared-memory swizzles, auxiliary producer bands, serial launch parameters, tensor-core/TMA primitives, and arbitrary dtype/operator combinations are not claimed. All additional checks are finite coverage, not an exhaustive sweep or proof of hidden-set generalization.
 

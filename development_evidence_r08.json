@@ -1,0 +1,113 @@
+{
+  "schema": "aurora-ptx-development-evidence-r08/v1",
+  "date_utc": "2026-10-29",
+  "compiler_sha256": "da0ef3d4b66ead0b58dddc07f4705ad2b5ca53600de2f76cc3ef84929de9adf8",
+  "prior_production_sha256": "5e6adddeedf59c4be833003b2277760b79db234f665f1f494c22bee228064687",
+  "prior_public_commit": "3ff62364fbcbfe0d1ac8683695d18f27ffdc7c05",
+  "defect": {
+    "original_ir": "Mixed selection: true arm is a comparison result and false arm is2.5; Graph.from_dict round trip",
+    "old_instruction": "selp.pred",
+    "native_rejection": "ptxas line50: Unexpected instruction types specified for selp",
+    "probe_gets": 1,
+    "probe_compiles": 1,
+    "probe_runs": 0,
+    "retries": 0
+  },
+  "repair": "After the existing predicate/predicate path, materialize a predicate true arm in the numeric false arm's type, then use the existing numeric selection. Predicate-pair logic, numeric true/predicate false and numeric-only paths are unchanged.",
+  "local_validation": {
+    "new_methods": 12,
+    "baseline_parameterized_failures": 42,
+    "baseline_errors": 0,
+    "total_tests_passed": 56,
+    "original44_assertions_unchanged": true,
+    "numeric_arm_condition_emission_rows_unchanged": 72
+  },
+  "historical_validation": {
+    "prior_ptx_byte_identical": 73,
+    "historical_gpu_reruns": 0
+  },
+  "native_validation": {
+    "completed_at_utc": "2026-10-29T10:30:29.163911+00:00",
+    "original_deadline_utc": "2026-10-29T11:15:00+00:00",
+    "cases_planned": 4,
+    "cases_passed": 4,
+    "full_exact_f32_outputs": 512,
+    "atol": 0,
+    "rtol": 0,
+    "health_gets": 1,
+    "posts": 8,
+    "known_responses": 8,
+    "unknown_responses": 0,
+    "retries": 0,
+    "independent_raw_input_lane_oracle": true,
+    "exceptional_selected_truth_classes": [
+      "finite_negative",
+      "finite_positive",
+      "nan",
+      "negative_infinity",
+      "negative_zero",
+      "positive_infinity",
+      "positive_zero"
+    ],
+    "cases": [
+      {
+        "id": "predicate_true_numeric_false",
+        "outputs": 128,
+        "distinct_input_states": 128,
+        "max_abs_error": 0,
+        "ir_sha256": "fed01dde7e6107e70470d6ec04a90f93c665290f7e297b3a1f1c7330314b4cb9",
+        "meta_sha256": "58e6fa92b80d85aca23b3e719eba381ae54bdaa1a50251a11d96f0ff9d2c194e",
+        "ptx_sha256": "2d4a6f2742515f659a4ce1f400f2be2c16b2b9d58e5029e8b788c5338a295bd5",
+        "compile_response_sha256": "57a42191011377422d4f26d4c3bee17648443338a71784696f6f55e633f7fb4e",
+        "run_response_sha256": "e9b123d790abfd64e0431f0ad02e9fb8ec29fe926f5f8e1e8c13d2ebe52c53b7"
+      },
+      {
+        "id": "numeric_true_predicate_false",
+        "outputs": 128,
+        "distinct_input_states": 128,
+        "max_abs_error": 0,
+        "ir_sha256": "4f6185810f2bfa3e8acad107d40430b47f1f65dd82d77fc535970b73a70ff6d3",
+        "meta_sha256": "73794eb708fea400cff4af849e4915bf43785a0cbd71c7520e5c8f522defae25",
+        "ptx_sha256": "f86733a3952d37ae1002294601ed2fa194f4a401d6b468a5846c1eda659c671e",
+        "compile_response_sha256": "e7943a8ad5ac5da19d21ddc627e1aec43b0df0d4aedf867ac16c17d48ebdad7b",
+        "run_response_sha256": "f24561dfa3df2ce7d362fc84f7f76248237fd91a7818075459ea34b84848bcae"
+      },
+      {
+        "id": "nested_literals_and_aliases",
+        "outputs": 128,
+        "distinct_input_states": 128,
+        "max_abs_error": 0,
+        "ir_sha256": "d465630f6722683f30dcd40a8cee11769459c61feaae80fe905a5886c04bb4a1",
+        "meta_sha256": "69ea3ce0005d04e8ba8ed7740cd199b23bb2c776ae39c6fa3dcdd5234d99c976",
+        "ptx_sha256": "7526c3e23b5f665570703ececc9dbd1385ac08792f75d762508c13d923f90922",
+        "compile_response_sha256": "7ebd2f3517f9d641f7fdfaad8dd14b50754cef3a1beddd25d802ef5b382074ad",
+        "run_response_sha256": "01a584c71f5cceafffe2ae87646e6cbd8806224de7d66bc0e29ae1776de8b4d4"
+      },
+      {
+        "id": "selected_nonfinite_truth",
+        "outputs": 128,
+        "distinct_input_states": 32,
+        "max_abs_error": 0,
+        "ir_sha256": "adf806b0d3fcd01f734a5f112fbb4667fc5410f2aed8214209623b4db5944f40",
+        "meta_sha256": "1b2d13c7bbc408efa4dd3847838501b036fd169ad049e75d53ec43e083d86211",
+        "ptx_sha256": "adc2dd047d8eca82d7ce6d9cf6b40331197a9d16abf93ecf2bc6e7e3f7ccf480",
+        "compile_response_sha256": "233d4ee25eee1c0d59aef17d240fedd555e32bb821be1528ad8e25ffe14031b7",
+        "run_response_sha256": "46ca9ae6a1e89002f4e950ea7c2cc04209bbd7cea0c35d64140c28c92f9ea43e"
+      }
+    ]
+  },
+  "reproduction": {
+    "generator": "tools/make_mixed_select_cases.py",
+    "tests": "test_mixed_select.py",
+    "numeric_emission_baseline": "tests/mixed_select_numeric_baseline.json",
+    "network_or_gpu_required_for_fixture_generation": false
+  },
+  "limitations": [
+    "Finite original development fixtures, not hidden evaluation or a general type-system proof",
+    "Exceptional case checks truth after selection, not blanket IEEE arithmetic/comparison or signed-zero output-bit correctness",
+    "No general mixed-numeric promotion, U64 graph dtype, Boolean memory or sealed R04 numeric64 shift repair",
+    "Five numeric scalar IR types are in native coverage. Internal u64 local emission checks do not add a U64 graph dtype.",
+    "Old R02/R04 unknown requests were not replayed; R04 numeric64 shift candidate is not incorporated.",
+    "No hidden score, ranking, prize, speed superiority or organizer evaluation is claimed."
+  ]
+}
