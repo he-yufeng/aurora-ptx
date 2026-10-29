@@ -1,0 +1,75 @@
+{
+  "schema": "aurora-ptx-development-evidence-r06/v1",
+  "date": "2026-10-29",
+  "compiler_sha256": "4961d6459327fea3d3a65ce5bcb069f5ee1e8791cd1dacbc9739a42e8a65dea6",
+  "baseline_compiler_sha256": "c4ee6ce22a59373cdd839b42c52a49b6d931db0984a4e2c5942a52a2df0a2a62",
+  "original_contribution": "Direct original IR-to-PTX scalar materialization lowering and finite regression infrastructure; Emmy/official problems are upstream work",
+  "baseline_reproduction": {
+    "typed_ir": "Unstarred Load -> Let(F32, comparison) -> Write, legal Graph.from_dict roundtrip",
+    "outcome": "Known organizer ptxas type rejection for cvt.f32.pred",
+    "baseline_regressions": {
+      "methods": 12,
+      "failures_including_parameterized_subtests": 22,
+      "errors": 0
+    }
+  },
+  "patch_scope": "Implicit numeric/predicate conversion and predicate register materialization; prior numeric conversion paths and R05 selection retained; no R04 shift merge",
+  "local_unit_tests": 32,
+  "unchanged_previous_assertions": 20,
+  "historical_ptx_byte_identical": 65,
+  "historical_native_reruns": 0,
+  "native_runner": "Organizer documented RTX 5090/sm_120 development runner",
+  "native_finished_at_utc": "2026-10-29T06:20:53.292532+00:00",
+  "native_cases_passed": 4,
+  "native_cases_planned": 4,
+  "native_full_exact_outputs": 512,
+  "new_post_responses_known": 8,
+  "new_post_responses_unknown": 0,
+  "cases": [
+    {
+      "id": "pred_to_numeric_5types",
+      "outputs": 128,
+      "input_states": 32,
+      "derived_float_classes": null,
+      "max_abs_error": 0,
+      "ptx_sha256": "9056af3ea693ee371bd8d0ecd9986b53424ef9e76a354df5fec417f03c956141",
+      "pass": true
+    },
+    {
+      "id": "numeric_to_pred_5types",
+      "outputs": 128,
+      "input_states": 32,
+      "derived_float_classes": null,
+      "max_abs_error": 0,
+      "ptx_sha256": "4394102858209a2df70747a297d0c8f0624aa23e39883996315c6b6205881b62",
+      "pass": true
+    },
+    {
+      "id": "nonfinite_numeric_truth",
+      "outputs": 128,
+      "input_states": 8,
+      "derived_float_classes": 7,
+      "max_abs_error": 0,
+      "ptx_sha256": "42227efc4c456cdc67086e5def4db152d125977cecbfe6efe90fdc2eb128b8c0",
+      "pass": true
+    },
+    {
+      "id": "literal_alias_predicate",
+      "outputs": 128,
+      "input_states": 8,
+      "derived_float_classes": null,
+      "max_abs_error": 0,
+      "ptx_sha256": "6310d924b3726ba78cda4e917e14e34a8ac23de2252dbff97f98a58a52e82033",
+      "pass": true
+    }
+  ],
+  "independent_audit": "Separate scalar oracle recomputed every output from original input arrays/lane bits and explicit IEEE exceptional division classification; no compiler/controller/factory oracle imported",
+  "reproduce": "tools/make_materialization_cases.py; test_materialization.py; tests/materialization_numeric_baseline.json",
+  "limitations": [
+    "Finite correctness coverage, not hidden-set score, ranking, award or speed superiority",
+    "Five supported numeric scalar IR types; internal u64 only checked locally, no U64 graph dtype or Boolean memory claim",
+    "Nonfinite truth conversion checks do not prove every exceptional arithmetic/comparison behavior",
+    "R02 unknown compile and incomplete R04 shift-count run remain sealed and are not replayed or incorporated",
+    "All65 historical native results are reused through byte-identical PTX rather than rerun"
+  ]
+}

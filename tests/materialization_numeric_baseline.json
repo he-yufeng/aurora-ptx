@@ -1,0 +1,319 @@
+{
+  "schema": "aurora-r06-frozen-numeric-conversions/v1",
+  "source_sha256": "c4ee6ce22a59373cdd839b42c52a49b6d931db0984a4e2c5942a52a2df0a2a62",
+  "scope": "36 exact numeric-only conversion outputs from the previously published compiler; not a second lowering backend",
+  "rows": [
+    {
+      "source_kind": "f32",
+      "target_kind": "f32",
+      "operand": "%f0",
+      "result_kind": "f32",
+      "lines": []
+    },
+    {
+      "source_kind": "f32",
+      "target_kind": "f64",
+      "operand": "%d8",
+      "result_kind": "f64",
+      "lines": [
+        "    cvt.f64.f32 %d8, %f0;"
+      ]
+    },
+    {
+      "source_kind": "f32",
+      "target_kind": "s32",
+      "operand": "%r8",
+      "result_kind": "s32",
+      "lines": [
+        "    cvt.rzi.s32.f32 %r8, %f0;"
+      ]
+    },
+    {
+      "source_kind": "f32",
+      "target_kind": "s64",
+      "operand": "%l8",
+      "result_kind": "s64",
+      "lines": [
+        "    cvt.rzi.s64.f32 %l8, %f0;"
+      ]
+    },
+    {
+      "source_kind": "f32",
+      "target_kind": "u32",
+      "operand": "%u8",
+      "result_kind": "u32",
+      "lines": [
+        "    cvt.rzi.u32.f32 %u8, %f0;"
+      ]
+    },
+    {
+      "source_kind": "f32",
+      "target_kind": "u64",
+      "operand": "%rd8",
+      "result_kind": "u64",
+      "lines": [
+        "    cvt.rzi.u64.f32 %rd8, %f0;"
+      ]
+    },
+    {
+      "source_kind": "f64",
+      "target_kind": "f32",
+      "operand": "%f8",
+      "result_kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.f64 %f8, %d0;"
+      ]
+    },
+    {
+      "source_kind": "f64",
+      "target_kind": "f64",
+      "operand": "%d0",
+      "result_kind": "f64",
+      "lines": []
+    },
+    {
+      "source_kind": "f64",
+      "target_kind": "s32",
+      "operand": "%r8",
+      "result_kind": "s32",
+      "lines": [
+        "    cvt.rzi.s32.f64 %r8, %d0;"
+      ]
+    },
+    {
+      "source_kind": "f64",
+      "target_kind": "s64",
+      "operand": "%l8",
+      "result_kind": "s64",
+      "lines": [
+        "    cvt.rzi.s64.f64 %l8, %d0;"
+      ]
+    },
+    {
+      "source_kind": "f64",
+      "target_kind": "u32",
+      "operand": "%u8",
+      "result_kind": "u32",
+      "lines": [
+        "    cvt.rzi.u32.f64 %u8, %d0;"
+      ]
+    },
+    {
+      "source_kind": "f64",
+      "target_kind": "u64",
+      "operand": "%rd8",
+      "result_kind": "u64",
+      "lines": [
+        "    cvt.rzi.u64.f64 %rd8, %d0;"
+      ]
+    },
+    {
+      "source_kind": "s32",
+      "target_kind": "f32",
+      "operand": "%f8",
+      "result_kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.s32 %f8, %r0;"
+      ]
+    },
+    {
+      "source_kind": "s32",
+      "target_kind": "f64",
+      "operand": "%d8",
+      "result_kind": "f64",
+      "lines": [
+        "    cvt.rn.f64.s32 %d8, %r0;"
+      ]
+    },
+    {
+      "source_kind": "s32",
+      "target_kind": "s32",
+      "operand": "%r0",
+      "result_kind": "s32",
+      "lines": []
+    },
+    {
+      "source_kind": "s32",
+      "target_kind": "s64",
+      "operand": "%l8",
+      "result_kind": "s64",
+      "lines": [
+        "    cvt.s64.s32 %l8, %r0;"
+      ]
+    },
+    {
+      "source_kind": "s32",
+      "target_kind": "u32",
+      "operand": "%u8",
+      "result_kind": "u32",
+      "lines": [
+        "    cvt.u32.s32 %u8, %r0;"
+      ]
+    },
+    {
+      "source_kind": "s32",
+      "target_kind": "u64",
+      "operand": "%rd8",
+      "result_kind": "u64",
+      "lines": [
+        "    cvt.u64.s32 %rd8, %r0;"
+      ]
+    },
+    {
+      "source_kind": "s64",
+      "target_kind": "f32",
+      "operand": "%f8",
+      "result_kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.s64 %f8, %l0;"
+      ]
+    },
+    {
+      "source_kind": "s64",
+      "target_kind": "f64",
+      "operand": "%d8",
+      "result_kind": "f64",
+      "lines": [
+        "    cvt.rn.f64.s64 %d8, %l0;"
+      ]
+    },
+    {
+      "source_kind": "s64",
+      "target_kind": "s32",
+      "operand": "%r8",
+      "result_kind": "s32",
+      "lines": [
+        "    cvt.s32.s64 %r8, %l0;"
+      ]
+    },
+    {
+      "source_kind": "s64",
+      "target_kind": "s64",
+      "operand": "%l0",
+      "result_kind": "s64",
+      "lines": []
+    },
+    {
+      "source_kind": "s64",
+      "target_kind": "u32",
+      "operand": "%u8",
+      "result_kind": "u32",
+      "lines": [
+        "    cvt.u32.s64 %u8, %l0;"
+      ]
+    },
+    {
+      "source_kind": "s64",
+      "target_kind": "u64",
+      "operand": "%rd8",
+      "result_kind": "u64",
+      "lines": [
+        "    cvt.u64.s64 %rd8, %l0;"
+      ]
+    },
+    {
+      "source_kind": "u32",
+      "target_kind": "f32",
+      "operand": "%f8",
+      "result_kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.u32 %f8, %u0;"
+      ]
+    },
+    {
+      "source_kind": "u32",
+      "target_kind": "f64",
+      "operand": "%d8",
+      "result_kind": "f64",
+      "lines": [
+        "    cvt.rn.f64.u32 %d8, %u0;"
+      ]
+    },
+    {
+      "source_kind": "u32",
+      "target_kind": "s32",
+      "operand": "%r8",
+      "result_kind": "s32",
+      "lines": [
+        "    cvt.s32.u32 %r8, %u0;"
+      ]
+    },
+    {
+      "source_kind": "u32",
+      "target_kind": "s64",
+      "operand": "%l8",
+      "result_kind": "s64",
+      "lines": [
+        "    cvt.s64.u32 %l8, %u0;"
+      ]
+    },
+    {
+      "source_kind": "u32",
+      "target_kind": "u32",
+      "operand": "%u0",
+      "result_kind": "u32",
+      "lines": []
+    },
+    {
+      "source_kind": "u32",
+      "target_kind": "u64",
+      "operand": "%rd8",
+      "result_kind": "u64",
+      "lines": [
+        "    cvt.u64.u32 %rd8, %u0;"
+      ]
+    },
+    {
+      "source_kind": "u64",
+      "target_kind": "f32",
+      "operand": "%f8",
+      "result_kind": "f32",
+      "lines": [
+        "    cvt.rn.f32.u64 %f8, %rd0;"
+      ]
+    },
+    {
+      "source_kind": "u64",
+      "target_kind": "f64",
+      "operand": "%d8",
+      "result_kind": "f64",
+      "lines": [
+        "    cvt.rn.f64.u64 %d8, %rd0;"
+      ]
+    },
+    {
+      "source_kind": "u64",
+      "target_kind": "s32",
+      "operand": "%r8",
+      "result_kind": "s32",
+      "lines": [
+        "    cvt.s32.u64 %r8, %rd0;"
+      ]
+    },
+    {
+      "source_kind": "u64",
+      "target_kind": "s64",
+      "operand": "%l8",
+      "result_kind": "s64",
+      "lines": [
+        "    cvt.s64.u64 %l8, %rd0;"
+      ]
+    },
+    {
+      "source_kind": "u64",
+      "target_kind": "u32",
+      "operand": "%u8",
+      "result_kind": "u32",
+      "lines": [
+        "    cvt.u32.u64 %u8, %rd0;"
+      ]
+    },
+    {
+      "source_kind": "u64",
+      "target_kind": "u64",
+      "operand": "%rd0",
+      "result_kind": "u64",
+      "lines": []
+    }
+  ]
+}

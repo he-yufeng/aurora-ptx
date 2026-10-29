@@ -14,6 +14,8 @@ On October26, R03 fixed a separately reproduced 64-bit shuffle-width defect: the
 
 On October29, R05 reproduced a distinct predicate-valued ternary defect: the prior compiler emitted `selp.pred`, which the organizer's ptxas rejected. The repair uses four predicate logic instructions only when both selected values are predicates; numeric selection is unchanged. **Four fixed native cases passed all512 exact f32 outputs**, covering eight-state Boolean selection, sixteen-state nested selection, conditional writes and selection of an integer value before an f32 store. Twenty local tests passed and all61 previously verified PTX files stayed byte-identical, without historical GPU reruns. See [development_evidence_r05.json](development_evidence_r05.json). R04's separate incomplete shift-count candidate and unknown run are not incorporated. These remain development results, not hidden-set scores, rank or awards.
 
+On October29, R06 fixed the independently reproduced typed-materialization defect: a valid `Let(F32, comparison)` generated an unsupported `cvt.f32.pred`. Numeric/predicate conversion now uses `selp` and `setp`, and a Boolean immediate is materialized as a predicate register. Floating-point truth uses an unordered nonzero comparison: NaN is true and both signed zeros are false. **Four fixed native cases passed all512 exact f32 outputs**, combining both conversion directions across five supported numeric IR types, internal f32/f64 NaN/Inf/zero truth, and Boolean literals/aliases. All32 local tests passed; all65 prior PTX files stayed byte-identical without historical GPU reruns. See [development_evidence_r06.json](development_evidence_r06.json). This is finite development coverage, not a new hidden grade, rank, prize, or general exceptional-value proof.
+
 ## Run
 
 Python 3.12+ is required; the recorded environment used Python 3.13.11.
@@ -26,6 +28,7 @@ git clone --depth 1 https://github.com/cloudrift-ai/emmy-hackathon-2026 ../upstr
 .venv/bin/python test_lowering.py
 .venv/bin/python test_wide_shuffle.py
 .venv/bin/python -m unittest test_predicate_select
+.venv/bin/python -m unittest test_materialization
 ```
 
 The minimal dependency set intentionally supports IR deserialization, not every feature of the Emmy application. No Torch, CUDA toolkit, or local GPU is required to generate PTX. For optional real-GPU checks, install `requests` and use the official [submit.py](https://github.com/cloudrift-ai/emmy-hackathon-2026/blob/main/submit.py) with this compiler. Read the organizer's API limits first; do not flood the shared runner.
@@ -64,6 +67,15 @@ The four predicate cases are independently reproducible offline, including their
 
 The generator refuses an existing output directory and makes no network or GPU calls. Its generated inputs, oracles and compiler PTX were bound to the recorded fixed cases; changing the test generator does not change the submitted compiler.
 
+The four materialization cases are also generated offline:
+
+```sh
+.venv/bin/python tools/make_materialization_cases.py
+.venv/bin/python compile.py tools/materialization_cases/pred_to_numeric_5types/k_r06_pred_to_numeric_5types.ir.json > out.ptx
+```
+
+The generator refuses existing case directories and makes no network/GPU calls. Its inputs and independent Boolean oracles reproduce the fixed native fixtures. The public tests generate temporary fixtures and check36 frozen numeric-only conversions from the previous published compiler; they do not call that compiler as a backend.
+
 ## Design
 
 1. Deserialize with the required `Graph.from_dict` API and bind the ABI from launch metadata.
@@ -76,7 +88,7 @@ See [WALKTHROUGH.md](WALKTHROUGH.md) for the invariants and failure analysis.
 
 ## Boundaries
 
-The broad verified campaigns are f32/static-shape; R03 adds only the five declared f64/i64 reduction checks, and R05 only the four declared predicate-selection contexts, not general dtype/operator support. The implementation rejects unsupported IR rather than falling back to an existing compiler. Non-NONE shared-memory swizzles, auxiliary producer bands, serial launch parameters, tensor-core/TMA primitives, and arbitrary dtype/operator combinations are not claimed. All additional checks are finite coverage, not an exhaustive sweep or proof of hidden-set generalization.
+The broad verified campaigns are f32/static-shape; R03 adds only the five declared f64/i64 reduction checks, R05 the four predicate-selection contexts, and R06 the four scalar-materialization contexts, not general dtype/operator support. R06 covers f32/f64/s32/s64/u32 scalar IR and locally checks the internal u64 register conversion; it does not add a U64 graph dtype or Boolean memory operations. Its nonfinite truth test is not blanket IEEE exceptional-value correctness for all arithmetic and comparison operators. The implementation rejects unsupported IR rather than falling back to an existing compiler. Non-NONE shared-memory swizzles, auxiliary producer bands, serial launch parameters, tensor-core/TMA primitives, and arbitrary dtype/operator combinations are not claimed. All additional checks are finite coverage, not an exhaustive sweep or proof of hidden-set generalization.
 
 This project was developed with AI coding assistance, which the published event rules permit. The participant provided a personally narrated video with the October24 project entry; that is not a claim of judging, prize eligibility or an award. AI assistance does not replace the participant's required understanding.
 

@@ -101,7 +101,14 @@ class PTX:
     def convert(self, value, kind):
         if value.kind == kind:
             return value
+        if kind == "pred":
+            return self.predicate(value)
         out = self.fresh(kind)
+        if value.kind == "pred":
+            condition = self.predicate(value)
+            self.emit(f"selp.{kind} {out.operand}, {self.literal(1, kind).operand}, "
+                      f"{self.literal(0, kind).operand}, {condition.operand};")
+            return out
         rounding = ".rn" if kind.startswith("f") and value.kind.startswith(("s", "u")) else ""
         if kind.startswith(("s", "u")) and value.kind.startswith("f"):
             rounding = ".rzi"
@@ -152,7 +159,15 @@ class PTX:
         return out
 
     def predicate(self, value):
-        return value if value.kind == "pred" else self.binary("!=", value, self.literal(0, value.kind))
+        if value.kind == "pred":
+            return self.reg(value)
+        if value.kind.startswith("f"):
+            # Numeric truth includes NaN; both signs of zero remain false.
+            out = self.fresh("pred")
+            self.emit(f"setp.neu.{value.kind} {out.operand}, {value.operand}, "
+                      f"{self.literal(0, value.kind).operand};")
+            return out
+        return self.binary("!=", value, self.literal(0, value.kind))
 
     def expr(self, expr):
         if isinstance(expr, str):
